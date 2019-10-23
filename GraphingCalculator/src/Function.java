@@ -3,13 +3,13 @@ import java.util.Arrays;
 
 
 public class Function {
-    public int TestInt;
     public double[][] points, transformedPoints;
     public int totalPoints;
     Polygon graphicalFunction;
     public int[] xCo, yCo;//different ways of looking at all the coordinates; an array of all the x coordinates and an array of all the y
     public int xScale = 15, yScale = 1;
     public int xFocus, yFocus = 0;
+    public int kathrynSebbyTest;
 
     public Function(int max, double step) {
         int counter = 0;
