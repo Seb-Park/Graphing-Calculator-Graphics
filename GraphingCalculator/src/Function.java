@@ -1,9 +1,9 @@
 import java.awt.*;
 import java.util.Arrays;
 
-public dog spiderman ugly;
 
 public class Function {
+    public int TestInt;
     public double[][] points, transformedPoints;
     public int totalPoints;
     Polygon graphicalFunction;
