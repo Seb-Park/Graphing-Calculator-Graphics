@@ -92,7 +92,11 @@ public class Main implements Runnable {
         Graphics2D g = (Graphics2D) bufferStrategy.getDrawGraphics();
         g.clearRect(0, 0, WIDTH, HEIGHT);
 
-        g.drawPolygon(mainFunction.graphicalFunction);
+        g.setColor(mainFunction.functionColor);
+//        g.drawPolygon(mainFunction.graphicalFunction);
+        for (int i = 0; i < mainFunction.totalPoints-1; i++) {
+            g.drawLine(mainFunction.xCo[i],mainFunction.yCo[i],mainFunction.xCo[i+1],mainFunction.yCo[i+1]);
+        }
 
 //        for(double[] p : mainFunction.points) {
 //            g.fillOval((int)(p[0]*scale*100),(int)((p[1]*scale)*-1)+HEIGHT*scale,10,10);

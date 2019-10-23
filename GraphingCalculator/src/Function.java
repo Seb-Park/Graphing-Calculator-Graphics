@@ -1,3 +1,5 @@
+import org.w3c.dom.css.RGBColor;
+
 import java.awt.*;
 import java.util.Arrays;
 
@@ -10,7 +12,12 @@ public class Function {
     public int xScale = 15, yScale = 1;
     public int xFocus, yFocus = 0;
 
+    public Color functionColor;
+
     public Function(int min, int max, double step) {
+
+        functionColor = new Color(41, 196, 254);
+
         int counter = 0;
         totalPoints = (int) ((max-min) / step);
         points = new double[totalPoints][2];
@@ -22,7 +29,8 @@ public class Function {
         for (double i = min; i < max; i += step) {
 //            points[counter] = new double[]{i, Math.pow(i, 4) + 3 * Math.pow(i, 3) + 6 * i + 4};
 //            points[counter] = new double[]{i, (i-3)*(i-5)*(i-7)};
-            points[counter] = new double[]{i, Math.pow(i,2)};
+//            points[counter] = new double[]{i, Math.pow(i,2)};
+            points[counter] = new double[]{i, 6*Math.pow(i,7) + 3*Math.pow(i,3) + 7};
             xCo[counter]= (int)(points[counter][0]*xScale + 500 + xFocus);
             yCo[counter]= (int)((points[counter][1])*-1+350+yFocus);
             counter++;
