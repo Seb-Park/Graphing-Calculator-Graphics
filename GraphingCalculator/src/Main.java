@@ -29,7 +29,7 @@ public class Main implements Runnable {
 
     public Main() {
 
-        mainFunction = new Function(1000,0.5);
+        mainFunction = new Function(-500,500,0.5);
         setUpGraphics();
 
     }
