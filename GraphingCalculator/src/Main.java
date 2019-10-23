@@ -1,12 +1,10 @@
 //Adapted from Basic Game Application from Mr. Chun
 
 
-import java.awt.Graphics2D;
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.*;
 import java.awt.image.BufferStrategy;
-import java.awt.*;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
 
 public class Main implements Runnable, MouseListener, MouseWheelListener, MouseMotionListener, KeyListener {
 
@@ -24,21 +22,22 @@ public class Main implements Runnable, MouseListener, MouseWheelListener, MouseM
     public int scale = 1;
 
     public boolean isShift, up, down, left, right;
-
-    public static void main(String[] args) {
-        Main ex = new Main();
-        new Thread(ex).start();
-    }
+    public boolean scrollUp, scrollDown;
 
     public Main() {
 
-        mainFunction = new Function(-500,500,0.05);
+        mainFunction = new Function(-500, 500, 0.05);
         setUpGraphics();
         canvas.addKeyListener(this);
         canvas.addMouseListener(this);
         canvas.addMouseMotionListener(this);
         canvas.addMouseWheelListener(this);
         canvas.setFocusable(true);
+    }
+
+    public static void main(String[] args) {
+        Main ex = new Main();
+        new Thread(ex).start();
     }
 
     public void run() {
@@ -52,31 +51,48 @@ public class Main implements Runnable, MouseListener, MouseWheelListener, MouseM
     }
 
 
-    public void scale()
-    {
-        if(up){
-            if(isShift) {
+    public void scale() {
+        if (scrollDown) {
+            mainFunction.transform(mainFunction.xScale + 1, mainFunction.yScale + 1, mainFunction.xFocus, mainFunction.yFocus);
+        }
+        if (scrollUp) {
+            mainFunction.transform(mainFunction.xScale - 1, mainFunction.yScale - 1, mainFunction.xFocus, mainFunction.yFocus);
+        }
+        if (up) {
+            if (isShift) {
+                mainFunction.transform(mainFunction.xScale, mainFunction.yScale + 1, mainFunction.xFocus, mainFunction.yFocus);
+            } else {
+                mainFunction.transform(mainFunction.xScale, mainFunction.yScale, mainFunction.xFocus, mainFunction.yFocus + 7);
+            }
+        }
+        if (down) {
+            if (isShift) {
+                mainFunction.transform(mainFunction.xScale, mainFunction.yScale - 1, mainFunction.xFocus, mainFunction.yFocus);
+            } else {
+                mainFunction.transform(mainFunction.xScale, mainFunction.yScale, mainFunction.xFocus, mainFunction.yFocus - 7);
+            }
+        }
+        if (left) {
+            if (isShift) {
+                mainFunction.transform(mainFunction.xScale - 1, mainFunction.yScale, mainFunction.xFocus, mainFunction.yFocus);
+            } else {
+                mainFunction.transform(mainFunction.xScale, mainFunction.yScale, mainFunction.xFocus + 7, mainFunction.yFocus);
+            }
+        }
+        if (right) {
+            if (isShift) {
                 mainFunction.transform(mainFunction.xScale + 1, mainFunction.yScale, mainFunction.xFocus, mainFunction.yFocus);
-            }
-            else{
-                mainFunction.transform(mainFunction.xScale,  mainFunction.yScale, mainFunction.xFocus, mainFunction.yFocus+1);
-            }
-        }
-        if(down){
-            if(isShift) {
-                mainFunction.transform(mainFunction.xScale - 1,  mainFunction.yScale, mainFunction.xFocus, mainFunction.yFocus);
-            }
-            else{
-                mainFunction.transform(mainFunction.xScale,  mainFunction.yScale, mainFunction.xFocus, mainFunction.yFocus-1);
+            } else {
+                mainFunction.transform(mainFunction.xScale, mainFunction.yScale, mainFunction.xFocus - 7, mainFunction.yFocus);
             }
         }
     }
 
-    public void graph(){
+    public void graph() {
 
     }
 
-    public void pause(int time ){
+    public void pause(int time) {
         try {
             Thread.sleep(time);
         } catch (InterruptedException e) {
@@ -116,8 +132,8 @@ public class Main implements Runnable, MouseListener, MouseWheelListener, MouseM
         g.setStroke(new BasicStroke(5));
         g.setColor(mainFunction.functionColor);
 //        g.drawPolygon(mainFunction.graphicalFunction);
-        for (int i = 0; i < mainFunction.totalPoints-1; i++) {
-            g.drawLine(mainFunction.xCo[i],mainFunction.yCo[i],mainFunction.xCo[i+1],mainFunction.yCo[i+1]);
+        for (int i = 0; i < mainFunction.totalPoints - 1; i++) {
+            g.drawLine(mainFunction.xCo[i], mainFunction.yCo[i], mainFunction.xCo[i + 1], mainFunction.yCo[i + 1]);
         }
 
 //        for(double[] p : mainFunction.points) {
@@ -156,17 +172,32 @@ public class Main implements Runnable, MouseListener, MouseWheelListener, MouseM
 
     @Override
     public void mouseWheelMoved(MouseWheelEvent e) {
-        if(e.getWheelRotation()<-1){
-            up = true;
-            down = false;
+        if (e.getWheelRotation() < -1) {
+//            up = true;
+//            down = false;
+//            left = false;
+//            right = true;
+//            isShift = true;
+            scrollUp = true;
+            scrollDown = false;
         }
-        if(e.getWheelRotation()>1){
-            down = true;
-            up = false;
+        if (e.getWheelRotation() > 1) {
+//            down = true;
+//            up = false;
+//            left = true;
+//            right = false;
+//            isShift = true;
+            scrollDown = true;
+            scrollUp = false;
         }
-        if(e.getWheelRotation()>=-1&&e.getWheelRotation()<=1){
-            up = false;
-            down = false;
+        if (e.getWheelRotation() >= -1 && e.getWheelRotation() <= 1) {
+//            up = false;
+//            down = false;
+//            left = false;
+//            right = false;
+//            isShift = false;
+            scrollDown = false;
+            scrollUp = false;
         }
         System.out.println(e.getWheelRotation());
     }
@@ -188,38 +219,38 @@ public class Main implements Runnable, MouseListener, MouseWheelListener, MouseM
 
     @Override
     public void keyPressed(KeyEvent e) {
-        if(e.getKeyCode() == 16){
+        if (e.getKeyCode() == 16) {
             isShift = true;
         }
-        if(e.getKeyCode() == 37){
+        if (e.getKeyCode() == 37) {
             left = true;
         }
-        if(e.getKeyCode() == 38){
+        if (e.getKeyCode() == 38) {
             up = true;
         }
-        if(e.getKeyCode() == 39){
+        if (e.getKeyCode() == 39) {
             right = true;
         }
-        if(e.getKeyCode() == 40){
+        if (e.getKeyCode() == 40) {
             down = true;
         }
     }
 
     @Override
     public void keyReleased(KeyEvent e) {
-        if(e.getKeyCode() == 16){
+        if (e.getKeyCode() == 16) {
             isShift = false;
         }
-        if(e.getKeyCode() == 37){
+        if (e.getKeyCode() == 37) {
             left = false;
         }
-        if(e.getKeyCode() == 38){
+        if (e.getKeyCode() == 38) {
             up = false;
         }
-        if(e.getKeyCode() == 39){
+        if (e.getKeyCode() == 39) {
             right = false;
         }
-        if(e.getKeyCode() == 40){
+        if (e.getKeyCode() == 40) {
             down = false;
         }
     }

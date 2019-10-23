@@ -42,8 +42,8 @@ public class Function {
     }
 
     public void transform(int scaleXAxis, int scaleYAxis, int xCenter, int yCenter){
-        xScale = scaleXAxis;
-        yScale = scaleYAxis;
+        if(scaleXAxis>0)xScale = scaleXAxis;
+        if(scaleYAxis>0)yScale = scaleYAxis;
         xFocus = xCenter;
         yFocus = yCenter;
         for (int i = 0; i < xCo.length; i++) {
