@@ -18,6 +18,10 @@ public class Main implements Runnable {
 
     public BufferStrategy bufferStrategy;
 
+    public Function mainFunction;
+
+    public int scale = 1;
+
     public static void main(String[] args) {
         Main ex = new Main();
         new Thread(ex).start();
@@ -25,6 +29,7 @@ public class Main implements Runnable {
 
     public Main() {
 
+        mainFunction = new Function(1000,0.5);
         setUpGraphics();
 
     }
@@ -42,6 +47,10 @@ public class Main implements Runnable {
 
     public void moveThings()
     {
+
+    }
+
+    public void graph(){
 
     }
 
@@ -82,6 +91,12 @@ public class Main implements Runnable {
     private void render() {
         Graphics2D g = (Graphics2D) bufferStrategy.getDrawGraphics();
         g.clearRect(0, 0, WIDTH, HEIGHT);
+
+        g.drawPolygon(mainFunction.graphicalFunction);
+
+//        for(double[] p : mainFunction.points) {
+//            g.fillOval((int)(p[0]*scale*100),(int)((p[1]*scale)*-1)+HEIGHT*scale,10,10);
+//        }
 
         g.dispose();
 
