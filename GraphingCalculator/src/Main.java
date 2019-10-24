@@ -5,6 +5,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.image.BufferStrategy;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Main implements Runnable, MouseListener, MouseWheelListener, MouseMotionListener, KeyListener {
 
@@ -26,7 +28,7 @@ public class Main implements Runnable, MouseListener, MouseWheelListener, MouseM
 
     public Main() {
 
-        mainFunction = new Function(-500, 500, 0.05);
+        mainFunction = new Function(new ArrayList<Integer>(Arrays.asList(3,6,2,3)), -50, 50, 0.1);
         setUpGraphics();
         canvas.addKeyListener(this);
         canvas.addMouseListener(this);
@@ -129,7 +131,7 @@ public class Main implements Runnable, MouseListener, MouseWheelListener, MouseM
     private void render() {
         Graphics2D g = (Graphics2D) bufferStrategy.getDrawGraphics();
         g.clearRect(0, 0, WIDTH, HEIGHT);
-        g.setStroke(new BasicStroke(5));
+        g.setStroke(new BasicStroke(2));
         g.setColor(mainFunction.functionColor);
 //        g.drawPolygon(mainFunction.graphicalFunction);
         for (int i = 0; i < mainFunction.totalPoints - 1; i++) {
@@ -199,7 +201,7 @@ public class Main implements Runnable, MouseListener, MouseWheelListener, MouseM
             scrollDown = false;
             scrollUp = false;
         }
-        System.out.println(e.getWheelRotation());
+//        System.out.println(e.getWheelRotation());
     }
 
     @Override
