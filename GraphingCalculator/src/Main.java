@@ -28,7 +28,7 @@ public class Main implements Runnable, MouseListener, MouseWheelListener, MouseM
 
     public Main() {
 
-        mainFunction = new Function(new ArrayList<Integer>(Arrays.asList(3,6,2,3)), -50, 50, 0.1);
+        mainFunction = new Function(new ArrayList<Integer>(Arrays.asList(1,0,0,0,0,3,2,5)), -50, 50, 0.1);
         setUpGraphics();
         canvas.addKeyListener(this);
         canvas.addMouseListener(this);
@@ -54,11 +54,11 @@ public class Main implements Runnable, MouseListener, MouseWheelListener, MouseM
 
 
     public void scale() {
-        if (scrollDown) {
-            mainFunction.transform(mainFunction.xScale + 1, mainFunction.yScale + 1, mainFunction.xFocus, mainFunction.yFocus);
-        }
         if (scrollUp) {
-            mainFunction.transform(mainFunction.xScale - 1, mainFunction.yScale - 1, mainFunction.xFocus, mainFunction.yFocus);
+            mainFunction.transform(mainFunction.xScale + 3, mainFunction.yScale + 3, mainFunction.xFocus, mainFunction.yFocus);
+        }
+        if (scrollDown) {
+            mainFunction.transform(mainFunction.xScale - 3, mainFunction.yScale - 3, mainFunction.xFocus, mainFunction.yFocus);
         }
         if (up) {
             if (isShift) {
@@ -127,7 +127,6 @@ public class Main implements Runnable, MouseListener, MouseWheelListener, MouseM
 
     }
 
-
     private void render() {
         Graphics2D g = (Graphics2D) bufferStrategy.getDrawGraphics();
         g.clearRect(0, 0, WIDTH, HEIGHT);
@@ -169,7 +168,12 @@ public class Main implements Runnable, MouseListener, MouseWheelListener, MouseM
 
     @Override
     public void mouseExited(MouseEvent e) {
-
+        scrollUp = false;
+        scrollDown = false;
+        right = false;
+        up = false;
+        left = false;
+        down = false;
     }
 
     @Override
