@@ -26,9 +26,11 @@ public class Main implements Runnable, MouseListener, MouseWheelListener, MouseM
     public boolean isShift, up, down, left, right;
     public boolean scrollUp, scrollDown;
 
+//    public Image grid = Toolkit.getDefaultToolkit().getImage("graph.gif");
+
     public Main() {
 
-        mainFunction = new Function(new ArrayList<Integer>(Arrays.asList(1,0,0,0,0,3,2,5)), -50, 50, 0.1);
+        mainFunction = new Function(new ArrayList<Integer>(Arrays.asList(1,0,0)), -50, 50, 0.1);
         setUpGraphics();
         canvas.addKeyListener(this);
         canvas.addMouseListener(this);
@@ -132,6 +134,8 @@ public class Main implements Runnable, MouseListener, MouseWheelListener, MouseM
         g.clearRect(0, 0, WIDTH, HEIGHT);
         g.setStroke(new BasicStroke(2));
         g.setColor(mainFunction.functionColor);
+//        g.drawImage(grid, mainFunction.xFocus + 300, mainFunction.yFocus + 200, mainFunction.xScale * 100, mainFunction.yScale *100, null);
+
 //        g.drawPolygon(mainFunction.graphicalFunction);
         for (int i = 0; i < mainFunction.totalPoints - 1; i++) {
             g.drawLine(mainFunction.xCo[i], mainFunction.yCo[i], mainFunction.xCo[i + 1], mainFunction.yCo[i + 1]);
