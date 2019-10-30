@@ -29,10 +29,9 @@ public class Main implements Runnable, MouseListener, MouseWheelListener, MouseM
 
     public Main() {
 
-        mainFunction = new Function(new ArrayList<Integer>(Arrays.asList(20,45,-3,13)), -50, 50, 0.1);
+//        mainFunction = new Function(new ArrayList<Integer>(Arrays.asList(20,45,-3,13)), -50, 50, 0.1);
         mainFunction = new Function(new ArrayList<Integer>(Arrays.asList(1,2,3,4,5)), -50, 50, 0.1, "zeroes");
 //        mainFunction = new Function(new ArrayList<Integer>(Arrays.asList(1,0,0)), -50, 50, 0.1);
-
 //        grid = new Function(true, -100, 100, -100, 100);
         grid = new Grid(-1000,1000,-1000,1000);
         setUpGraphics();
@@ -140,11 +139,29 @@ public class Main implements Runnable, MouseListener, MouseWheelListener, MouseM
 
         g.setColor(Color.lightGray);
 
+        g.setStroke(new BasicStroke(1));
+
         for(int i = 0; i < grid.pointsX.length; i++){
+            if(grid.pointsX[i][0] == 0){//This sets the line x = 0 to black and thick so you can see the axis
+                g.setStroke(new BasicStroke(3));
+                g.setColor(Color.black);
+            }
             g.drawLine(grid.tx[i],grid.ty[0],grid.tx[i],grid.ty[0] - grid.tyl);
+            if(grid.pointsX[i][0] == 0){
+                g.setStroke(new BasicStroke(1));
+                g.setColor(Color.lightGray);
+            }
         }
         for(int i = 0; i < grid.pointsY.length; i++){
+            if(grid.pointsY[i][1] == 0){//This sets the line x = 0 to black and thick so you can see the axis
+                g.setStroke(new BasicStroke(3));
+                g.setColor(Color.black);
+            }
             g.drawLine(grid.tx[0],grid.ty[i],grid.tx[0]+grid.txl,grid.ty[i]);
+            if(grid.pointsY[i][1] == 0){//This sets the line x = 0 to black and thick so you can see the axis
+                g.setStroke(new BasicStroke(1));
+                g.setColor(Color.lightGray);
+            }
         }
 
 
