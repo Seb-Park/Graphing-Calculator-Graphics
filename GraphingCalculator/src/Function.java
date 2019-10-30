@@ -43,6 +43,31 @@ public class Function {
 
     }
 
+    public Function(boolean isGrid, int minX, int maxX, int minY, int maxY){
+        if(isGrid) {
+            functionColor = new Color(0,0,0);
+        }
+
+        xCo = new int[totalPoints];
+        yCo = new int[totalPoints];
+        totalPoints = (maxX - minX) * (maxY - minY);
+        points = new double[totalPoints][2];
+
+        int counter = 0;
+
+        for(int x = minX; x < maxX; x++){
+            for(int y = minY; y < maxY; y++){
+                points[counter] = new double[]{x,y};
+                xCo[counter]= (int)(points[counter][0]*xScale + 500 + xFocus);
+                yCo[counter]= (int)((points[counter][1])*-1+350+yFocus);
+                counter++;
+
+            }
+        }
+
+
+    }
+
     public Function(ArrayList<Integer> coefficients, int min, int max, double precision) {
 
         functionColor = new Color(41, 196, 254);

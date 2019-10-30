@@ -20,17 +20,17 @@ public class Main implements Runnable, MouseListener, MouseWheelListener, MouseM
     public BufferStrategy bufferStrategy;
 
     public Function mainFunction;
+//    public Function grid;
 
     public int scale = 1;
 
     public boolean isShift, up, down, left, right;
     public boolean scrollUp, scrollDown;
 
-//    public Image grid = Toolkit.getDefaultToolkit().getImage("graph.gif");
-
     public Main() {
 
-        mainFunction = new Function(new ArrayList<Integer>(Arrays.asList(1,0,0)), -50, 50, 0.1);
+        mainFunction = new Function(new ArrayList<Integer>(Arrays.asList(20,45,-3,13)), -50, 50, 0.1);
+//        grid = new Function(true, -100, 100, -100, 100);
         setUpGraphics();
         canvas.addKeyListener(this);
         canvas.addMouseListener(this);
@@ -134,12 +134,13 @@ public class Main implements Runnable, MouseListener, MouseWheelListener, MouseM
         g.clearRect(0, 0, WIDTH, HEIGHT);
         g.setStroke(new BasicStroke(2));
         g.setColor(mainFunction.functionColor);
-//        g.drawImage(grid, mainFunction.xFocus + 300, mainFunction.yFocus + 200, mainFunction.xScale * 100, mainFunction.yScale *100, null);
-
 //        g.drawPolygon(mainFunction.graphicalFunction);
         for (int i = 0; i < mainFunction.totalPoints - 1; i++) {
             g.drawLine(mainFunction.xCo[i], mainFunction.yCo[i], mainFunction.xCo[i + 1], mainFunction.yCo[i + 1]);
         }
+//        for (int i = 0; i < grid.totalPoints - 1; i++) {
+//            g.drawLine(grid.xCo[i], grid.yCo[i], grid.xCo[i + 1], grid.yCo[i + 1]);
+//        }
 
 //        for(double[] p : mainFunction.points) {
 //            g.fillOval((int)(p[0]*scale*100),(int)((p[1]*scale)*-1)+HEIGHT*scale,10,10);
