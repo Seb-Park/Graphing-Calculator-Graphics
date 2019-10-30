@@ -29,8 +29,9 @@ public class Main implements Runnable, MouseListener, MouseWheelListener, MouseM
 
     public Main() {
 
-//        mainFunction = new Function(new ArrayList<Integer>(Arrays.asList(20,45,-3,13)), -50, 50, 0.1);
-        mainFunction = new Function(new ArrayList<Integer>(Arrays.asList(1,0,0)), -50, 50, 0.1);
+        mainFunction = new Function(new ArrayList<Integer>(Arrays.asList(20,45,-3,13)), -50, 50, 0.1);
+        mainFunction = new Function(new ArrayList<Integer>(Arrays.asList(1,2,3,4,5)), -50, 50, 0.1, "zeroes");
+//        mainFunction = new Function(new ArrayList<Integer>(Arrays.asList(1,0,0)), -50, 50, 0.1);
 
 //        grid = new Function(true, -100, 100, -100, 100);
         grid = new Grid(-1000,1000,-1000,1000);
@@ -109,7 +110,7 @@ public class Main implements Runnable, MouseListener, MouseWheelListener, MouseM
     }
 
     private void setUpGraphics() {
-        frame = new JFrame("Application Template");
+        frame = new JFrame("Graph");
 
         panel = (JPanel) frame.getContentPane();
         panel.setPreferredSize(new Dimension(WIDTH, HEIGHT));
