@@ -29,9 +29,11 @@ public class Main implements Runnable, MouseListener, MouseWheelListener, MouseM
 
     public Main() {
 
-        mainFunction = new Function(new ArrayList<Integer>(Arrays.asList(20,45,-3,13)), -50, 50, 0.1);
+//        mainFunction = new Function(new ArrayList<Integer>(Arrays.asList(20,45,-3,13)), -50, 50, 0.1);
+        mainFunction = new Function(new ArrayList<Integer>(Arrays.asList(1,0,0)), -50, 50, 0.1);
+
 //        grid = new Function(true, -100, 100, -100, 100);
-        grid = new Grid(-100,100,-100,100);
+        grid = new Grid(-1000,1000,-1000,1000);
         setUpGraphics();
         canvas.addKeyListener(this);
         canvas.addMouseListener(this);
@@ -138,12 +140,13 @@ public class Main implements Runnable, MouseListener, MouseWheelListener, MouseM
         g.setColor(Color.lightGray);
 
         for(int i = 0; i < grid.pointsX.length; i++){
-            g.drawLine(grid.tx[i],grid.ty[0],grid.tx[i],grid.ty[0] + grid.tyl);
+            g.drawLine(grid.tx[i],grid.ty[0],grid.tx[i],grid.ty[0] - grid.tyl);
         }
         for(int i = 0; i < grid.pointsY.length; i++){
             g.drawLine(grid.tx[0],grid.ty[i],grid.tx[0]+grid.txl,grid.ty[i]);
-//            System.out.println("Point " + i + ":" + grid.ty[i]);
         }
+
+
         g.setStroke(new BasicStroke(2));
         g.setColor(mainFunction.functionColor);
 //        g.drawPolygon(mainFunction.graphicalFunction);
