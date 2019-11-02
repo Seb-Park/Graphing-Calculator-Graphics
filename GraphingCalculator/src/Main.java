@@ -19,7 +19,7 @@ public class Main implements Runnable, MouseListener, MouseWheelListener, MouseM
 
     public BufferStrategy bufferStrategy;
 
-    public Function mainFunction;
+    public Function mainFunction, otherFunction;
     public Grid grid;
 
     public int scale = 1;
@@ -29,10 +29,13 @@ public class Main implements Runnable, MouseListener, MouseWheelListener, MouseM
 
     public Main() {
 
-//        mainFunction = new Function(new ArrayList<Integer>(Arrays.asList(20,45,-3,13)), -50, 50, 0.1);
+        otherFunction = new Function(new ArrayList<Integer>(Arrays.asList(20,45,-3,13)), -50, 50, 0.1, "coefficients");
         mainFunction = new Function(new ArrayList<Integer>(Arrays.asList(1,2,3,4,5)), -50, 50, 0.1, "zeroes");
+        mainFunction = new Function(new ArrayList<Integer>(Arrays.asList(3,0,5,0,-21)), -50, 50, 0.1, "coefficients");
+
 //        mainFunction = new Function(new ArrayList<Integer>(Arrays.asList(1,0,0)), -50, 50, 0.1);
 //        grid = new Function(true, -100, 100, -100, 100);
+//        mainFunction = new Function(new ArrayList<Integer>(Arrays.asList(1)), -50, 50, 0.1, "zeroes");
         grid = new Grid(-1000,1000,-1000,1000);
         setUpGraphics();
         canvas.addKeyListener(this);
@@ -94,6 +97,8 @@ public class Main implements Runnable, MouseListener, MouseWheelListener, MouseM
             }
         }
         grid.transform(mainFunction.xScale,mainFunction.yScale,mainFunction.xFocus,mainFunction.yFocus);
+        otherFunction.transform(mainFunction.xScale,mainFunction.yScale,mainFunction.xFocus,mainFunction.yFocus);
+
     }
 
     public void graph() {
@@ -171,6 +176,12 @@ public class Main implements Runnable, MouseListener, MouseWheelListener, MouseM
         for (int i = 0; i < mainFunction.totalPoints - 1; i++) {
             g.drawLine(mainFunction.xCo[i], mainFunction.yCo[i], mainFunction.xCo[i + 1], mainFunction.yCo[i + 1]);
         }
+
+//        g.setColor(otherFunction.functionColor);
+//
+//        for (int i = 0; i < otherFunction.totalPoints - 1; i++) {
+//            g.drawLine(otherFunction.xCo[i], otherFunction.yCo[i], otherFunction.xCo[i + 1], otherFunction.yCo[i + 1]);
+//        }
 
 //        for (int i = 0; i < grid.totalPoints - 1; i++) {
 //            g.drawLine(grid.xCo[i], grid.yCo[i], grid.xCo[i + 1], grid.yCo[i + 1]);
