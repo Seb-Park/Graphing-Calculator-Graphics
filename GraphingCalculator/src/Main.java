@@ -14,6 +14,7 @@ public class Main implements Runnable, MouseListener, MouseWheelListener, MouseM
     final int HEIGHT = 700;
 
     public JFrame frame;
+    public JTextField inputArea;
     public Canvas canvas;
     public JPanel panel;
 
@@ -21,6 +22,7 @@ public class Main implements Runnable, MouseListener, MouseWheelListener, MouseM
 
     public Function mainFunction, otherFunction;
     public Grid grid;
+    public Point min;
 
     public int scale = 1;
 
@@ -32,6 +34,8 @@ public class Main implements Runnable, MouseListener, MouseWheelListener, MouseM
         otherFunction = new Function(new ArrayList<Integer>(Arrays.asList(20,45,-3,13)), -50, 50, 0.1, "coefficients");
         mainFunction = new Function(new ArrayList<Integer>(Arrays.asList(1,2,3,4,5)), -50, 50, 0.1, "zeroes");
         mainFunction = new Function(new ArrayList<Integer>(Arrays.asList(3,0,5,0,-21)), -50, 50, 0.1, "coefficients");
+        min = new Point(LocalMinFinder.findFirstMax(new ArrayList<Integer>(Arrays.asList(3,0,5,0,-21))));
+        System.out.println(Arrays.toString(min.coordinates));
 
 //        mainFunction = new Function(new ArrayList<Integer>(Arrays.asList(1,0,0)), -50, 50, 0.1);
 //        grid = new Function(true, -100, 100, -100, 100);
@@ -97,6 +101,7 @@ public class Main implements Runnable, MouseListener, MouseWheelListener, MouseM
             }
         }
         grid.transform(mainFunction.xScale,mainFunction.yScale,mainFunction.xFocus,mainFunction.yFocus);
+        min.transform(mainFunction.xScale,mainFunction.yScale,mainFunction.xFocus,mainFunction.yFocus);
         otherFunction.transform(mainFunction.xScale,mainFunction.yScale,mainFunction.xFocus,mainFunction.yFocus);
 
     }
@@ -115,16 +120,20 @@ public class Main implements Runnable, MouseListener, MouseWheelListener, MouseM
 
     private void setUpGraphics() {
         frame = new JFrame("Graph");
+        inputArea = new JTextField();
 
         panel = (JPanel) frame.getContentPane();
         panel.setPreferredSize(new Dimension(WIDTH, HEIGHT));
-        panel.setLayout(null);
+        panel.setLayout(new GridLayout(2,1));
+//        panel.setLayout(null);
 
         canvas = new Canvas();
         canvas.setBounds(0, 0, WIDTH, HEIGHT);
         canvas.setIgnoreRepaint(true);
 
         panel.add(canvas);
+        panel.add(inputArea);
+
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
@@ -134,6 +143,8 @@ public class Main implements Runnable, MouseListener, MouseWheelListener, MouseM
         canvas.createBufferStrategy(2);
         bufferStrategy = canvas.getBufferStrategy();
         canvas.requestFocus();
+
+
         System.out.println("DONE graphic setup");
 
     }
@@ -176,6 +187,8 @@ public class Main implements Runnable, MouseListener, MouseWheelListener, MouseM
         for (int i = 0; i < mainFunction.totalPoints - 1; i++) {
             g.drawLine(mainFunction.xCo[i], mainFunction.yCo[i], mainFunction.xCo[i + 1], mainFunction.yCo[i + 1]);
         }
+
+        g.drawOval(min.transformedCoordinates[0], min.transformedCoordinates[1], 10,10);
 
 //        g.setColor(otherFunction.functionColor);
 //
