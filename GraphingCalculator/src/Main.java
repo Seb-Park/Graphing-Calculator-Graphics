@@ -33,8 +33,9 @@ public class Main implements Runnable, MouseListener, MouseWheelListener, MouseM
 
         otherFunction = new Function(new ArrayList<Integer>(Arrays.asList(20,45,-3,13)), -50, 50, 0.1, "coefficients");
         mainFunction = new Function(new ArrayList<Integer>(Arrays.asList(1,2,3,4,5)), -50, 50, 0.1, "zeroes");
-        mainFunction = new Function(new ArrayList<Integer>(Arrays.asList(3,0,5,0,-21)), -50, 50, 0.1, "coefficients");
-        min = new Point(LocalMinFinder.findFirstMax(new ArrayList<Integer>(Arrays.asList(3,0,5,0,-21))));
+//        mainFunction = new Function(new ArrayList<Integer>(Arrays.asList(3,0,5,0,0,0,-21)), -50, 50, 0.1, "coefficients");
+        mainFunction = new Function(new ArrayList<Integer>(Arrays.asList(3, 0, 2, 4, -21)), -50, 50, .1, "coefficients");
+        min = new Point(LocalMinFinder.findFirstMax(new ArrayList<Integer>(Arrays.asList(3, 0, 2, 4, -21))));
         System.out.println(Arrays.toString(min.coordinates));
 
 //        mainFunction = new Function(new ArrayList<Integer>(Arrays.asList(1,0,0)), -50, 50, 0.1);
@@ -188,7 +189,9 @@ public class Main implements Runnable, MouseListener, MouseWheelListener, MouseM
             g.drawLine(mainFunction.xCo[i], mainFunction.yCo[i], mainFunction.xCo[i + 1], mainFunction.yCo[i + 1]);
         }
 
-        g.drawOval(min.transformedCoordinates[0], min.transformedCoordinates[1], 10,10);
+        g.setColor(Color.RED);
+
+        g.fillOval(min.transformedCoordinates[0]-(4), min.transformedCoordinates[1]-(int)(5), 10,10);
 
 //        g.setColor(otherFunction.functionColor);
 //

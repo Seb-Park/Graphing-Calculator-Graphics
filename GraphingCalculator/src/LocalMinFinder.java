@@ -26,7 +26,7 @@ public class LocalMinFinder {
             System.out.print(coefficients.get(i) + "x^" + (coefficients.size()-(i+1)) + "+");
         }
         double [] result = LocalMinFinder.MaxMin(inputTerms);
-        return new double[] {result[1], result[0]};
+        return new double[] {result[0], result[1]};
     }
 
     public static double[] MaxMin(ArrayList<Term> input) {
