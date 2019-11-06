@@ -15,6 +15,8 @@ public class Main implements Runnable, MouseListener, MouseWheelListener, MouseM
 
     public JFrame frame;
     public JTextField inputArea;
+    public JPanel bottomStrip;
+    public JButton goButton;
     public Canvas canvas;
     public JPanel panel;
 
@@ -68,42 +70,41 @@ public class Main implements Runnable, MouseListener, MouseWheelListener, MouseM
 
     public void scale() {
         if (scrollUp) {
-            mainFunction.transform(mainFunction.xScale + 3, mainFunction.yScale + 3, mainFunction.xFocus, mainFunction.yFocus);
+            grid.transform(grid.xScale + 3, grid.yScale + 3, grid.xFocus, grid.yFocus);
         }
         if (scrollDown) {
-            mainFunction.transform(mainFunction.xScale - 3, mainFunction.yScale - 3, mainFunction.xFocus, mainFunction.yFocus);
         }
         if (up) {
             if (isShift) {
-                mainFunction.transform(mainFunction.xScale, mainFunction.yScale + 1, mainFunction.xFocus, mainFunction.yFocus);
+                grid.transform(grid.xScale, grid.yScale + 1, grid.xFocus, grid.yFocus);
             } else {
-                mainFunction.transform(mainFunction.xScale, mainFunction.yScale, mainFunction.xFocus, mainFunction.yFocus + 7);
+                grid.transform(grid.xScale, grid.yScale, grid.xFocus, grid.yFocus + 7);
             }
         }
         if (down) {
             if (isShift) {
-                mainFunction.transform(mainFunction.xScale, mainFunction.yScale - 1, mainFunction.xFocus, mainFunction.yFocus);
+                grid.transform(grid.xScale, grid.yScale - 1, grid.xFocus, grid.yFocus);
             } else {
-                mainFunction.transform(mainFunction.xScale, mainFunction.yScale, mainFunction.xFocus, mainFunction.yFocus - 7);
+                grid.transform(grid.xScale, grid.yScale, grid.xFocus, grid.yFocus - 7);
             }
         }
         if (left) {
             if (isShift) {
-                mainFunction.transform(mainFunction.xScale - 1, mainFunction.yScale, mainFunction.xFocus, mainFunction.yFocus);
+                grid.transform(grid.xScale - 1, grid.yScale, grid.xFocus, grid.yFocus);
             } else {
-                mainFunction.transform(mainFunction.xScale, mainFunction.yScale, mainFunction.xFocus + 7, mainFunction.yFocus);
+                grid.transform(grid.xScale, grid.yScale, grid.xFocus + 7, grid.yFocus);
             }
         }
         if (right) {
             if (isShift) {
-                mainFunction.transform(mainFunction.xScale + 1, mainFunction.yScale, mainFunction.xFocus, mainFunction.yFocus);
+                grid.transform(grid.xScale + 1, grid.yScale, grid.xFocus, grid.yFocus);
             } else {
-                mainFunction.transform(mainFunction.xScale, mainFunction.yScale, mainFunction.xFocus - 7, mainFunction.yFocus);
+                grid.transform(grid.xScale, grid.yScale, grid.xFocus - 7, grid.yFocus);
             }
         }
-        grid.transform(mainFunction.xScale,mainFunction.yScale,mainFunction.xFocus,mainFunction.yFocus);
-        min.transform(mainFunction.xScale,mainFunction.yScale,mainFunction.xFocus,mainFunction.yFocus);
-        otherFunction.transform(mainFunction.xScale,mainFunction.yScale,mainFunction.xFocus,mainFunction.yFocus);
+        mainFunction.transform(grid.xScale,grid.yScale,grid.xFocus,grid.yFocus);
+        min.transform(grid.xScale,grid.yScale,grid.xFocus,grid.yFocus);
+        otherFunction.transform(grid.xScale,grid.yScale,grid.xFocus,grid.yFocus);
 
     }
 
@@ -120,21 +121,38 @@ public class Main implements Runnable, MouseListener, MouseWheelListener, MouseM
     }
 
     private void setUpGraphics() {
+
         frame = new JFrame("Graph");
         inputArea = new JTextField();
+        goButton = new JButton("Go!");
+        goButton.addActionListener(
+                new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent evt) {
+                        System.out.println("Go was pressed!");
 
+                    }
+                });
+
+        bottomStrip = new JPanel();
         panel = (JPanel) frame.getContentPane();
         panel.setPreferredSize(new Dimension(WIDTH, HEIGHT));
-        panel.setLayout(new GridLayout(2,1));
+//        panel.setLayout(new GridLayout(2,1));
 //        panel.setLayout(null);
+        panel.setLayout(new BorderLayout(0,0));
+        bottomStrip.setLayout(new BorderLayout(0,0));
 
         canvas = new Canvas();
         canvas.setBounds(0, 0, WIDTH, HEIGHT);
         canvas.setIgnoreRepaint(true);
 
-        panel.add(canvas);
-        panel.add(inputArea);
-
+//        panel.add(canvas);
+//        panel.add(inputArea);
+        panel.add(BorderLayout.SOUTH, bottomStrip);
+        bottomStrip.add(BorderLayout.CENTER, inputArea);
+        bottomStrip.add(BorderLayout.WEST, new JLabel("  y ="));
+        bottomStrip.add(BorderLayout.EAST, goButton);
+        panel.add(BorderLayout.CENTER, canvas);
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
@@ -145,6 +163,14 @@ public class Main implements Runnable, MouseListener, MouseWheelListener, MouseM
         bufferStrategy = canvas.getBufferStrategy();
         canvas.requestFocus();
 
+        inputArea.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if(e.getKeyCode() == KeyEvent.VK_ENTER){
+                    System.out.println("Textbox was entered");
+                }
+            }
+        });
 
         System.out.println("DONE graphic setup");
 
@@ -305,6 +331,9 @@ public class Main implements Runnable, MouseListener, MouseWheelListener, MouseM
         }
         if (e.getKeyCode() == 40) {
             down = true;
+        }
+        if(e.getKeyCode() == 10){
+            System.out.println("returned");
         }
     }
 

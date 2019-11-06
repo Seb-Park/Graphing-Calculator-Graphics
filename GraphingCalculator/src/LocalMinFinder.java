@@ -2,6 +2,8 @@ import java.util.Scanner;
 import java.util.ArrayList;
 //smaller to bigger to calculate inflexion points
 
+//Credit to TChung21 for this class (made some edits)
+
 public class LocalMinFinder {
 
     public static double interval, m, m2, y1, y2, y3, y4, x2, x1, finalx, finaly;
@@ -56,7 +58,7 @@ public class LocalMinFinder {
             //System.out.println("x1, x2: " + x1 + ", " + x2 + ", " + y1 + ", " + y2);
             //System.out.println("m, m2: " + m + ", " + m2);
 
-            if (m > .00000001 || m < -.00000001) {
+            if (m > .000001 || m < -.000001) {
                 if (m / m2 < 0) {
                     found = false;
                     interval = interval / 10;
@@ -66,7 +68,7 @@ public class LocalMinFinder {
             }
             //System.out.println(m + ", " + m2);
 
-            if (m < .00000001 && m > -.00000001) {
+            if (m < .000001 && m > -.000001) {
                 found = true;
                 finalx = (x1 + x2) / 2;
                 finaly = (y1 + y2) / 2;

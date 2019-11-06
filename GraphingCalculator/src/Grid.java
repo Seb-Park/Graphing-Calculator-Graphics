@@ -36,8 +36,10 @@ public class Grid {
     }
 
     public void transform(int scaleXAxis, int scaleYAxis, int xCenter, int yCenter){
-        if(scaleXAxis>0)xScale = scaleXAxis;
-        if(scaleYAxis>0)yScale = scaleYAxis;
+        if(scaleXAxis>0){xScale = scaleXAxis;}
+        else {xScale = 1; }
+        if(scaleYAxis>0){yScale = scaleYAxis;}
+        else {yScale = 1; }
         xFocus = xCenter;
         yFocus = yCenter;
         for(int i  = 0; i < tx.length; i++){
@@ -46,8 +48,8 @@ public class Grid {
         for(int i  = 0; i < ty.length; i++){
             ty[i]= (int)((pointsY[i][1])*-1*yScale+350+yFocus);
         }
-        txl = xLineLength * scaleXAxis;
-        tyl = yLineLength * scaleYAxis;
+        txl = xLineLength * xScale;
+        tyl = yLineLength * yScale;
 
 
     }
