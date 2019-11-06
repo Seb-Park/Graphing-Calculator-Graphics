@@ -73,6 +73,7 @@ public class Main implements Runnable, MouseListener, MouseWheelListener, MouseM
             grid.transform(grid.xScale + 3, grid.yScale + 3, grid.xFocus, grid.yFocus);
         }
         if (scrollDown) {
+            grid.transform(grid.xScale - 3, grid.yScale - 3, grid.xFocus, grid.yFocus);
         }
         if (up) {
             if (isShift) {
