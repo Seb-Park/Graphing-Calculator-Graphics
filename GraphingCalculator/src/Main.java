@@ -36,8 +36,10 @@ public class Main implements Runnable, MouseListener, MouseWheelListener, MouseM
         otherFunction = new Function(new ArrayList<Integer>(Arrays.asList(20,45,-3,13)), -50, 50, 0.1, "coefficients");
         mainFunction = new Function(new ArrayList<Integer>(Arrays.asList(1,2,3,4,5)), -50, 50, 0.1, "zeroes");
 //        mainFunction = new Function(new ArrayList<Integer>(Arrays.asList(3,0,5,0,0,0,-21)), -50, 50, 0.1, "coefficients");
-        mainFunction = new Function(new ArrayList<Integer>(Arrays.asList(3, 0, 2, 4, -21)), -50, 50, .1, "coefficients");
-        min = new Point(LocalMinFinder.findFirstMax(new ArrayList<Integer>(Arrays.asList(3, 0, 2, 4, -21))));
+//        mainFunction = new Function(new ArrayList<Integer>(Arrays.asList(3, 0, 2, 4, -21)), -50, 50, .1, "coefficients");
+//        min = new Point(LocalMinFinder.findFirstMax(new ArrayList<Integer>(Arrays.asList(3, 0, 2, 4, -21))));
+        mainFunction = new Function(new ArrayList<Integer>(Arrays.asList(1,0,3)),-50,50,0.1, "coefficients");
+        min = new Point(LocalMinFinder.findFirstMax(new ArrayList<Integer>(Arrays.asList(1,0,3))));
         System.out.println(Arrays.toString(min.coordinates));
 
 //        mainFunction = new Function(new ArrayList<Integer>(Arrays.asList(1,0,0)), -50, 50, 0.1);
@@ -130,7 +132,10 @@ public class Main implements Runnable, MouseListener, MouseWheelListener, MouseM
                 new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent evt) {
+                        ArrayList ceArrayList = LocalMinFinder.splitString(inputArea.getText());
                         System.out.println("Go was pressed!");
+                        mainFunction = new Function(ceArrayList,-50,50,0.1, "coefficients");
+                        min = new Point(LocalMinFinder.findFirstMax(ceArrayList));
 
                     }
                 });
@@ -168,7 +173,10 @@ public class Main implements Runnable, MouseListener, MouseWheelListener, MouseM
             @Override
             public void keyPressed(KeyEvent e) {
                 if(e.getKeyCode() == KeyEvent.VK_ENTER){
+                    ArrayList<Integer> ceArrayList = LocalMinFinder.splitString(inputArea.getText());
                     System.out.println("Textbox was entered");
+                    mainFunction = new Function(ceArrayList,-50,50,0.1, "coefficients");
+                    min = new Point(LocalMinFinder.findFirstMax(ceArrayList));
                 }
             }
         });

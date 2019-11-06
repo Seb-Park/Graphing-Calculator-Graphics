@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.Scanner;
 import java.util.ArrayList;
 //smaller to bigger to calculate inflexion points
@@ -90,7 +91,7 @@ public class LocalMinFinder {
     public static void split(String d) {
         int counter = 1;
         String[] arrOfStr = d.split("\\+");
-        for (String a : arrOfStr) counter++;
+        counter = arrOfStr.length;
         double[] coefficient;
         double[] power;
         coefficient = new double[counter];
@@ -114,5 +115,66 @@ public class LocalMinFinder {
                 System.out.println("Term Power is " + power[counter - 1]);
             }
         }
+    }
+
+    public static ArrayList<Integer> splitString(String d) {
+        ArrayList<Term> termAL = new ArrayList<>();
+        String[] arrOfStr = d.split("\\+");
+        int counter = arrOfStr.length;
+        double[] coefficient;
+        double[] power;
+        coefficient = new double[counter];
+        power = new double[counter];
+
+        for (String a : arrOfStr) {
+            System.out.println("Term:" + a);
+            String[] arrOfStr2 = a.split("\\^");
+            String[] arrOfStr3 = arrOfStr2[0].split("x");
+            for (String c : arrOfStr3) {
+                System.out.println("Cofficient: " + c);
+                coefficient[counter - 1] = Double.parseDouble(c);
+                if (arrOfStr2.length == 2) {
+                    System.out.println("Power:" + arrOfStr2[1]);
+                    power[counter - 1] = Double.parseDouble(arrOfStr2[1]);
+                } else {
+                    power[counter - 1] = 1;
+                }
+                termAL.add(new Term(coefficient[counter - 1], power[counter - 1]));
+                System.out.println("Term Coefficient is " + coefficient[counter - 1]);
+                System.out.println("Term Power is " + power[counter - 1]);
+            }
+        }
+
+        double highestExponent = 0;
+
+        for(int i = 0; i < termAL.size(); i++){
+            if(termAL.get(i).power>highestExponent){
+                highestExponent = termAL.get(i).power;
+                System.out.println(highestExponent + " is the new highest exponent " +
+                        "and therefore the coefficient array will be this long:  " + (highestExponent+1));
+            }
+        }
+
+
+        double[] coefficientArray = new double[(int)highestExponent+1];
+
+        for(int i = 0; i < coefficientArray.length; i++){
+            for(int x = 0; x < termAL.size(); x++){
+                if(termAL.get(i).power == coefficientArray.length-i-1){
+                    coefficientArray[i] = termAL.get(i).coefficient;
+                }
+                else{
+                    coefficientArray[i] = 0;
+                }
+            }
+            System.out.print(coefficientArray[i] + ", ");
+        }
+
+        ArrayList<Integer> coefficients = new ArrayList<>();
+        for (double co : coefficientArray) {
+            coefficients.add((int) co);
+        }
+
+        return coefficients;
     }
 }
