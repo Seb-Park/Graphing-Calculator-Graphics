@@ -3,7 +3,9 @@ import java.util.Scanner;
 import java.util.ArrayList;
 //smaller to bigger to calculate inflexion points
 
-//Credit to TChung21 for this class (made some edits)
+//Brilliantly written by Github User TChung21
+//Follow at https://github.com/TChung21/
+
 
 public class LocalMinFinder {
 
@@ -32,7 +34,7 @@ public class LocalMinFinder {
         return new double[] {result[0], result[1]};
     }
 
-    public static double[] MaxMin(ArrayList<Term> input) {
+    public static double[] oldMaxMin(ArrayList<Term> input) {
         for (int i = 0; i < (2 / interval * 100); i++) {
             found = false;
             x1 = x2;
@@ -80,7 +82,56 @@ public class LocalMinFinder {
         return new double[] {finalx, finaly};
     }
 
-    public static void secondMax(ArrayList<Term> input2) {
+    public static double[] MaxMin(ArrayList<Term> input) { //ArrayList<Term> input
+        for (int i = 0; i < (2 / interval * 100); i++) {
+            found = false;
+            x1 = x2;
+            x2 = x2 - interval;
+            for (int j = 0; j < input.size(); j++) {
+                if (j == 0) {
+                    y1 = (input.get(j).coefficient * Math.pow(x1, input.get(j).power));
+                    y2 = (input.get(j).coefficient * Math.pow(x2, input.get(j).power));
+                    y3 = (input.get(j).coefficient * Math.pow((x1 - interval), input.get(j).power));
+                    y4 = (input.get(j).coefficient * Math.pow((x2 - interval), input.get(j).power));
+                } else {
+                    y1 = y1 + (input.get(j).coefficient * Math.pow(x1, input.get(j).power));
+                    y2 = y2 + (input.get(j).coefficient * Math.pow(x2, input.get(j).power));
+                    y3 = y3 + (input.get(j).coefficient * Math.pow((x1 - interval), input.get(j).power));
+                    y4 = y4 + (input.get(j).coefficient * Math.pow((x2 - interval), input.get(j).power));
+                }
+            }
+            //System.out.println(x1 + ", " + x2 + ", " + y1 + ", " + y2 + ", " + m + ", " + m2);
+            m = (y2 - y1) / (x2 - x1);
+            m2 = (y4 - y3) / ((x1) - (x1 + interval));
+
+            if (m > .0001 || m < -.0001) {
+                if (m / m2 < 0) {
+                    interval = interval / 10;
+                    x2 = x1;
+                    found = false;
+                    //System.out.println(x1 + ", " + x2 + ", " + y1 + ", " + y2 + ", " + m + ", " + m2);
+                }
+            }
+            if (m < .0001 && m > -.0001) {
+                found = true;
+                finalx = (x1 + x2) / 2;
+                finaly = (y1 + y2) / 2;
+                System.out.println("Max/Min Coordinate: (" + finalx + ", " + finaly + ")");
+                return(new double[]{finalx,finaly});
+            }
+        }
+        return(new double[]{420,69});
+    }
+
+    public static double[] secondMax(ArrayList<Term> input2) {
+        if (found) {
+            interval = .5;
+            x2 = finalx - (interval / 2);
+            return MaxMin(input2);
+        }
+        return(new double[]{69,420});
+    }
+    public static void oldSecondMax(ArrayList<Term> input2) {
         if (found) {
             interval = .5;
             x2 = finalx - (interval / 2);
@@ -160,8 +211,8 @@ public class LocalMinFinder {
 
         for(int i = 0; i < coefficientArray.length; i++){
             for(int x = 0; x < termAL.size(); x++){
-                if(termAL.get(i).power == coefficientArray.length-i-1){
-                    coefficientArray[i] = termAL.get(i).coefficient;
+                if(termAL.get(x).power == coefficientArray.length-i-1){
+                    coefficientArray[i] = termAL.get(x).coefficient;
                 }
                 else{
                     coefficientArray[i] = 0;
