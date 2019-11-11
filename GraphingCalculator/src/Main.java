@@ -25,6 +25,7 @@ public class Main implements Runnable, MouseListener, MouseWheelListener, MouseM
     public Function mainFunction, otherFunction;
     public Grid grid;
     public Point min;
+    public Point firstZero;
 
     public int scale = 1;
 
@@ -38,8 +39,10 @@ public class Main implements Runnable, MouseListener, MouseWheelListener, MouseM
 //        mainFunction = new Function(new ArrayList<Integer>(Arrays.asList(3,0,5,0,0,0,-21)), -50, 50, 0.1, "coefficients");
 //        mainFunction = new Function(new ArrayList<Integer>(Arrays.asList(3, 0, 2, 4, -21)), -50, 50, .1, "coefficients");
 //        min = new Point(LocalMinFinder.findFirstMax(new ArrayList<Integer>(Arrays.asList(3, 0, 2, 4, -21))));
-        mainFunction = new Function(new ArrayList<Integer>(Arrays.asList(1,0,3)),-50,50,0.1, "coefficients");
-        min = new Point(LocalMinFinder.findFirstMax(new ArrayList<Integer>(Arrays.asList(1,0,3))));
+        mainFunction = new Function(new ArrayList<Integer>(Arrays.asList(1,3,-3)),-50,50,0.1, "coefficients");
+        min = new Point(LocalMinFinder.findFirstMax(new ArrayList<Integer>(Arrays.asList(1,3,-3))));
+        firstZero = new Point(LocalMinFinder.findFirstZero(new ArrayList<Integer>(Arrays.asList(1,3,-3))));
+
         System.out.println(Arrays.toString(min.coordinates));
 
 //        mainFunction = new Function(new ArrayList<Integer>(Arrays.asList(1,0,0)), -50, 50, 0.1);
@@ -107,6 +110,7 @@ public class Main implements Runnable, MouseListener, MouseWheelListener, MouseM
         }
         mainFunction.transform(grid.xScale,grid.yScale,grid.xFocus,grid.yFocus);
         min.transform(grid.xScale,grid.yScale,grid.xFocus,grid.yFocus);
+        firstZero.transform(grid.xScale,grid.yScale,grid.xFocus,grid.yFocus);
         otherFunction.transform(grid.xScale,grid.yScale,grid.xFocus,grid.yFocus);
 
     }
@@ -136,7 +140,7 @@ public class Main implements Runnable, MouseListener, MouseWheelListener, MouseM
                         System.out.println("Go was pressed!");
                         mainFunction = new Function(ceArrayList,-50,50,0.1, "coefficients");
                         min = new Point(LocalMinFinder.findFirstMax(ceArrayList));
-
+                        firstZero = new Point(LocalMinFinder.findFirstZero(ceArrayList));
                     }
                 });
 
@@ -227,6 +231,9 @@ public class Main implements Runnable, MouseListener, MouseWheelListener, MouseM
         g.setColor(Color.RED);
 
         g.fillOval(min.transformedCoordinates[0]-(4), min.transformedCoordinates[1]-(int)(5), 10,10);
+
+        g.fillOval(firstZero.transformedCoordinates[0]-(4), firstZero.transformedCoordinates[1]-(int)(5), 10,10);
+
 
 //        g.setColor(otherFunction.functionColor);
 //
