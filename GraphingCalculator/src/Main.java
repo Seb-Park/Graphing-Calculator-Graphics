@@ -26,6 +26,7 @@ public class Main implements Runnable, MouseListener, MouseWheelListener, MouseM
     public Grid grid;
     public Point min;
     public Point firstZero;
+    public Point secondZero;
 
     public int scale = 1;
 
@@ -42,6 +43,8 @@ public class Main implements Runnable, MouseListener, MouseWheelListener, MouseM
         mainFunction = new Function(new ArrayList<Integer>(Arrays.asList(1,3,-3)),-50,50,0.1, "coefficients");
         min = new Point(LocalMinFinder.findFirstMax(new ArrayList<Integer>(Arrays.asList(1,3,-3))));
         firstZero = new Point(LocalMinFinder.findFirstZero(new ArrayList<Integer>(Arrays.asList(1,3,-3))));
+        secondZero = new Point(LocalMinFinder.findMultipleZeroes(new ArrayList<Integer>(Arrays.asList(1,3,-3))));
+
 
         System.out.println(Arrays.toString(min.coordinates));
 
@@ -112,7 +115,7 @@ public class Main implements Runnable, MouseListener, MouseWheelListener, MouseM
         min.transform(grid.xScale,grid.yScale,grid.xFocus,grid.yFocus);
         firstZero.transform(grid.xScale,grid.yScale,grid.xFocus,grid.yFocus);
         otherFunction.transform(grid.xScale,grid.yScale,grid.xFocus,grid.yFocus);
-
+        secondZero.transform(grid.xScale,grid.yScale,grid.xFocus,grid.yFocus);
     }
 
     public void graph() {
@@ -141,6 +144,7 @@ public class Main implements Runnable, MouseListener, MouseWheelListener, MouseM
                         mainFunction = new Function(ceArrayList,-50,50,0.1, "coefficients");
                         min = new Point(LocalMinFinder.findFirstMax(ceArrayList));
                         firstZero = new Point(LocalMinFinder.findFirstZero(ceArrayList));
+                        secondZero = new Point(LocalMinFinder.findMultipleZeroes(ceArrayList));
                     }
                 });
 
@@ -181,6 +185,9 @@ public class Main implements Runnable, MouseListener, MouseWheelListener, MouseM
                     System.out.println("Textbox was entered");
                     mainFunction = new Function(ceArrayList,-50,50,0.1, "coefficients");
                     min = new Point(LocalMinFinder.findFirstMax(ceArrayList));
+                    firstZero = new Point(LocalMinFinder.findFirstZero(ceArrayList));
+                    secondZero = new Point(LocalMinFinder.findMultipleZeroes(ceArrayList));
+
                 }
             }
         });
@@ -233,6 +240,8 @@ public class Main implements Runnable, MouseListener, MouseWheelListener, MouseM
         g.fillOval(min.transformedCoordinates[0]-(4), min.transformedCoordinates[1]-(int)(5), 10,10);
 
         g.fillOval(firstZero.transformedCoordinates[0]-(4), firstZero.transformedCoordinates[1]-(int)(5), 10,10);
+
+        g.fillOval(secondZero.transformedCoordinates[0]-(4), secondZero.transformedCoordinates[1]-(int)(5), 10,10);
 
 
 //        g.setColor(otherFunction.functionColor);

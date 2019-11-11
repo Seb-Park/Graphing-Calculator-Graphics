@@ -71,6 +71,19 @@ public class LocalMinFinder {
         double [] result = LocalMinFinder.zero(inputTerms);
         return new double[] {result[0], result[1]};
     }
+
+
+    public static double[] findMultipleZeroes(ArrayList<Integer> coefficients){
+        interval = .5;
+        x2 = 100; //could change domain/range
+        ArrayList<Term> inputTerms = new ArrayList<Term>();
+        for(int i = 0; i < coefficients.size(); i++){
+            inputTerms.add(new Term(coefficients.get(i), coefficients.size()-(i+1)));
+            System.out.print(coefficients.get(i) + "x^" + (coefficients.size()-(i+1)) + "+");
+        }
+        double [] result = LocalMinFinder.multiZero(inputTerms);
+        return new double[] {result[0], result[1]};
+    }
     public static double[] MaxMin(ArrayList<Term> input) { //ArrayList<Term> input
         for (int i = 0; i < (2 / interval * 100); i++) {
             found = false;
