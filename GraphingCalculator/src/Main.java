@@ -235,7 +235,7 @@ public class Main implements Runnable, MouseListener, MouseWheelListener, MouseM
             g.drawLine(mainFunction.xCo[i], mainFunction.yCo[i], mainFunction.xCo[i + 1], mainFunction.yCo[i + 1]);
         }
 
-        g.setColor(Color.RED);
+        g.setColor(Color.lightGray);
 
         g.fillOval(min.transformedCoordinates[0]-(4), min.transformedCoordinates[1]-(int)(5), 10,10);
 
