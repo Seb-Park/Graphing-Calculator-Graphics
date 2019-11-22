@@ -72,6 +72,13 @@ public class LocalMinFinder {
         return new double[] {result[0], result[1]};
     }
 
+    public static double[] findYint(ArrayList<Integer> coefficients){
+        double finalY = 0;
+        for(int i = 0; i < coefficients.size(); i++){
+            finalY+=coefficients.get(i)*coefficients.size()-i-1;
+        }
+        return new double[]{0,finalY};
+    }
 
     public static double[] findMultipleZeroes(ArrayList<Integer> coefficients){
         interval = .5;

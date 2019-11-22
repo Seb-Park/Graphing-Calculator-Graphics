@@ -1,6 +1,5 @@
 //Adapted from Basic Game Application from Mr. Chun
 
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -28,6 +27,8 @@ public class Main implements Runnable, MouseListener, MouseWheelListener, MouseM
     public Point firstZero;
     public Point secondZero;
 
+    public Point[] pointArray;
+
     public int scale = 1;
 
     public boolean isShift, up, down, left, right;
@@ -41,12 +42,18 @@ public class Main implements Runnable, MouseListener, MouseWheelListener, MouseM
 //        mainFunction = new Function(new ArrayList<Integer>(Arrays.asList(3, 0, 2, 4, -21)), -50, 50, .1, "coefficients");
 //        min = new Point(LocalMinFinder.findFirstMax(new ArrayList<Integer>(Arrays.asList(3, 0, 2, 4, -21))));
         mainFunction = new Function(new ArrayList<Integer>(Arrays.asList(1,3,-3)),-50,50,0.1, "coefficients");
-        min = new Point(LocalMinFinder.findFirstMax(new ArrayList<Integer>(Arrays.asList(1,3,-3))));
-        firstZero = new Point(LocalMinFinder.findFirstZero(new ArrayList<Integer>(Arrays.asList(1,3,-3))));
-        secondZero = new Point(LocalMinFinder.findMultipleZeroes(new ArrayList<Integer>(Arrays.asList(1,3,-3))));
+//        min = new Point(LocalMinFinder.findFirstMax(new ArrayList<Integer>(Arrays.asList(1,3,-3))));
+//        firstZero = new Point(LocalMinFinder.findFirstZero(new ArrayList<Integer>(Arrays.asList(1,3,-3))));
+//        secondZero = new Point(LocalMinFinder.findMultipleZeroes(new ArrayList<Integer>(Arrays.asList(1,3,-3))));
 
+        pointArray = new Point[4];
 
-        System.out.println(Arrays.toString(min.coordinates));
+        pointArray[0] = new Point(LocalMinFinder.findFirstMax(new ArrayList<Integer>(Arrays.asList(1,3,-3))));
+        pointArray[1] = new Point(LocalMinFinder.findFirstZero(new ArrayList<Integer>(Arrays.asList(1,3,-3))));
+        pointArray[2] = new Point(LocalMinFinder.findMultipleZeroes(new ArrayList<Integer>(Arrays.asList(1,3,-3))));
+        pointArray[3] = new Point(LocalMinFinder.findYint(new ArrayList<Integer>(Arrays.asList(1,3,-3))));
+
+//        System.out.println(Arrays.toString(min.coordinates));
 
 //        mainFunction = new Function(new ArrayList<Integer>(Arrays.asList(1,0,0)), -50, 50, 0.1);
 //        grid = new Function(true, -100, 100, -100, 100);
@@ -112,10 +119,13 @@ public class Main implements Runnable, MouseListener, MouseWheelListener, MouseM
             }
         }
         mainFunction.transform(grid.xScale,grid.yScale,grid.xFocus,grid.yFocus);
-        min.transform(grid.xScale,grid.yScale,grid.xFocus,grid.yFocus);
-        firstZero.transform(grid.xScale,grid.yScale,grid.xFocus,grid.yFocus);
+//        min.transform(grid.xScale,grid.yScale,grid.xFocus,grid.yFocus);
+//        firstZero.transform(grid.xScale,grid.yScale,grid.xFocus,grid.yFocus);
         otherFunction.transform(grid.xScale,grid.yScale,grid.xFocus,grid.yFocus);
-        secondZero.transform(grid.xScale,grid.yScale,grid.xFocus,grid.yFocus);
+//        secondZero.transform(grid.xScale,grid.yScale,grid.xFocus,grid.yFocus);
+        for(Point p : pointArray){
+            p.transform(grid.xScale,grid.yScale,grid.xFocus,grid.yFocus);
+        }
     }
 
     public void graph() {
@@ -142,9 +152,16 @@ public class Main implements Runnable, MouseListener, MouseWheelListener, MouseM
                         ArrayList ceArrayList = LocalMinFinder.splitString(inputArea.getText());
                         System.out.println("Go was pressed!");
                         mainFunction = new Function(ceArrayList,-50,50,0.1, "coefficients");
-                        min = new Point(LocalMinFinder.findFirstMax(ceArrayList));
-                        firstZero = new Point(LocalMinFinder.findFirstZero(ceArrayList));
-                        secondZero = new Point(LocalMinFinder.findMultipleZeroes(ceArrayList));
+
+//                        min = new Point(LocalMinFinder.findFirstMax(ceArrayList));
+//                        firstZero = new Point(LocalMinFinder.findFirstZero(ceArrayList));
+//                        secondZero = new Point(LocalMinFinder.findMultipleZeroes(ceArrayList));
+
+                        pointArray[0] = new Point(LocalMinFinder.findFirstMax(ceArrayList));
+                        pointArray[1] = new Point(LocalMinFinder.findFirstZero(ceArrayList));
+                        pointArray[2] = new Point(LocalMinFinder.findMultipleZeroes(ceArrayList));
+                        pointArray[3] = new Point(LocalMinFinder.findYint(ceArrayList));
+
                     }
                 });
 
@@ -184,10 +201,15 @@ public class Main implements Runnable, MouseListener, MouseWheelListener, MouseM
                     ArrayList<Integer> ceArrayList = LocalMinFinder.splitString(inputArea.getText());
                     System.out.println("Textbox was entered");
                     mainFunction = new Function(ceArrayList,-50,50,0.1, "coefficients");
-                    min = new Point(LocalMinFinder.findFirstMax(ceArrayList));
-                    firstZero = new Point(LocalMinFinder.findFirstZero(ceArrayList));
-                    secondZero = new Point(LocalMinFinder.findMultipleZeroes(ceArrayList));
 
+//                    min = new Point(LocalMinFinder.findFirstMax(ceArrayList));
+//                    firstZero = new Point(LocalMinFinder.findFirstZero(ceArrayList));
+//                    secondZero = new Point(LocalMinFinder.findMultipleZeroes(ceArrayList));
+
+                    pointArray[0] = new Point(LocalMinFinder.findFirstMax(ceArrayList));
+                    pointArray[1] = new Point(LocalMinFinder.findFirstZero(ceArrayList));
+                    pointArray[2] = new Point(LocalMinFinder.findMultipleZeroes(ceArrayList));
+                    pointArray[3] = new Point(LocalMinFinder.findYint(ceArrayList));
                 }
             }
         });
@@ -237,13 +259,15 @@ public class Main implements Runnable, MouseListener, MouseWheelListener, MouseM
 
         g.setColor(Color.lightGray);
 
-        g.fillOval(min.transformedCoordinates[0]-(4), min.transformedCoordinates[1]-(int)(5), 10,10);
+//        g.fillOval(min.transformedCoordinates[0]-(4), min.transformedCoordinates[1]-(int)(5), 10,10);
+//
+//        g.fillOval(firstZero.transformedCoordinates[0]-(4), firstZero.transformedCoordinates[1]-(int)(5), 10,10);
+//
+//        g.fillOval(secondZero.transformedCoordinates[0]-(4), secondZero.transformedCoordinates[1]-(int)(5), 10,10);
 
-        g.fillOval(firstZero.transformedCoordinates[0]-(4), firstZero.transformedCoordinates[1]-(int)(5), 10,10);
-
-        g.fillOval(secondZero.transformedCoordinates[0]-(4), secondZero.transformedCoordinates[1]-(int)(5), 10,10);
-
-
+        for(Point p : pointArray){
+            g.fillOval(p.transformedCoordinates[0]-(4), p.transformedCoordinates[1]-(int)(5), 10,10);
+        }
 //        g.setColor(otherFunction.functionColor);
 //
 //        for (int i = 0; i < otherFunction.totalPoints - 1; i++) {
