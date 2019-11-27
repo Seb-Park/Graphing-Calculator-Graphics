@@ -75,8 +75,10 @@ public class LocalMinFinder {
     public static double[] findYint(ArrayList<Integer> coefficients){
         double finalY = 0;
         for(int i = 0; i < coefficients.size(); i++){
-            finalY+=coefficients.get(i)*coefficients.size()-i-1;
+            finalY+=coefficients.get(i)*Math.pow(0,coefficients.size()-i-1);
+//            System.err.println(coefficients.get(i)*coefficients.size()-i-1 + " = " + coefficients.get(i) + "*" + (coefficients.size())+"-" + i +"-1");
         }
+//        System.out.println("\n"+Double.valueOf(finalY) + " is then new yint");
         return new double[]{0,finalY};
     }
 
