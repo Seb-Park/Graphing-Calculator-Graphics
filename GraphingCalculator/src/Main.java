@@ -36,29 +36,33 @@ public class Main implements Runnable, MouseListener, MouseWheelListener, MouseM
 
     public Main() {
 
-        otherFunction = new Function(new ArrayList<Integer>(Arrays.asList(20,45,-3,13)), -50, 50, 0.1, "coefficients");
-        mainFunction = new Function(new ArrayList<Integer>(Arrays.asList(1,2,3,4,5)), -50, 50, 0.1, "zeroes");
+        otherFunction = new Function(new ArrayList<Integer>(Arrays.asList(20, 45, -3, 13)), -50, 50, 0.1, "coefficients");
+        mainFunction = new Function(new ArrayList<Integer>(Arrays.asList(1, 2, 3, 4, 5)), -50, 50, 0.1, "zeroes");
 //        mainFunction = new Function(new ArrayList<Integer>(Arrays.asList(3,0,5,0,0,0,-21)), -50, 50, 0.1, "coefficients");
 //        mainFunction = new Function(new ArrayList<Integer>(Arrays.asList(3, 0, 2, 4, -21)), -50, 50, .1, "coefficients");
 //        min = new Point(LocalMinFinder.findFirstMax(new ArrayList<Integer>(Arrays.asList(3, 0, 2, 4, -21))));
-        mainFunction = new Function(new ArrayList<Integer>(Arrays.asList(1,3,-3)),-50,50,0.1, "coefficients");
+        mainFunction = new Function(new ArrayList<Integer>(Arrays.asList(1, 3, -3)), -50, 50, 0.1, "coefficients");
 //        min = new Point(LocalMinFinder.findFirstMax(new ArrayList<Integer>(Arrays.asList(1,3,-3))));
 //        firstZero = new Point(LocalMinFinder.findFirstZero(new ArrayList<Integer>(Arrays.asList(1,3,-3))));
 //        secondZero = new Point(LocalMinFinder.findMultipleZeroes(new ArrayList<Integer>(Arrays.asList(1,3,-3))));
 
         pointArray = new Point[4];
 
-        pointArray[0] = new Point(LocalMinFinder.findFirstMax(new ArrayList<Integer>(Arrays.asList(1,3,-3))));
-        pointArray[1] = new Point(LocalMinFinder.findFirstZero(new ArrayList<Integer>(Arrays.asList(1,3,-3))));
-        pointArray[2] = new Point(LocalMinFinder.findMultipleZeroes(new ArrayList<Integer>(Arrays.asList(1,3,-3))));
-        pointArray[3] = new Point(LocalMinFinder.findYint(new ArrayList<Integer>(Arrays.asList(1,3,-3))));
+        pointArray[0] = new Point(LocalMinFinder.findFirstMax(new ArrayList<Integer>(Arrays.asList(1, 3, -3))));
+        pointArray[0].type = "Local Vertex";
+        pointArray[1] = new Point(LocalMinFinder.findFirstZero(new ArrayList<Integer>(Arrays.asList(1, 3, -3))));
+        pointArray[1].type = "X-intercept";
+        pointArray[2] = new Point(LocalMinFinder.findMultipleZeroes(new ArrayList<Integer>(Arrays.asList(1, 3, -3))));
+        pointArray[2].type = "X-intercept";
+        pointArray[3] = new Point(LocalMinFinder.findYint(new ArrayList<Integer>(Arrays.asList(1, 3, -3))));
+        pointArray[3].type = "Y-intercept";
 
 //        System.out.println(Arrays.toString(min.coordinates));
 
 //        mainFunction = new Function(new ArrayList<Integer>(Arrays.asList(1,0,0)), -50, 50, 0.1);
 //        grid = new Function(true, -100, 100, -100, 100);
 //        mainFunction = new Function(new ArrayList<Integer>(Arrays.asList(1)), -50, 50, 0.1, "zeroes");
-        grid = new Grid(-1000,1000,-1000,1000);
+        grid = new Grid(-1000, 1000, -1000, 1000);
         setUpGraphics();
         canvas.addKeyListener(this);
         canvas.addMouseListener(this);
@@ -118,13 +122,13 @@ public class Main implements Runnable, MouseListener, MouseWheelListener, MouseM
                 grid.transform(grid.xScale, grid.yScale, grid.xFocus - 7, grid.yFocus);
             }
         }
-        mainFunction.transform(grid.xScale,grid.yScale,grid.xFocus,grid.yFocus);
+        mainFunction.transform(grid.xScale, grid.yScale, grid.xFocus, grid.yFocus);
 //        min.transform(grid.xScale,grid.yScale,grid.xFocus,grid.yFocus);
 //        firstZero.transform(grid.xScale,grid.yScale,grid.xFocus,grid.yFocus);
-        otherFunction.transform(grid.xScale,grid.yScale,grid.xFocus,grid.yFocus);
+        otherFunction.transform(grid.xScale, grid.yScale, grid.xFocus, grid.yFocus);
 //        secondZero.transform(grid.xScale,grid.yScale,grid.xFocus,grid.yFocus);
-        for(Point p : pointArray){
-            p.transform(grid.xScale,grid.yScale,grid.xFocus,grid.yFocus);
+        for (Point p : pointArray) {
+            p.transform(grid.xScale, grid.yScale, grid.xFocus, grid.yFocus);
         }
     }
 
@@ -151,16 +155,20 @@ public class Main implements Runnable, MouseListener, MouseWheelListener, MouseM
                     public void actionPerformed(ActionEvent evt) {
                         ArrayList ceArrayList = LocalMinFinder.splitString(inputArea.getText());
                         System.out.println("Go was pressed!");
-                        mainFunction = new Function(ceArrayList,-50,50,0.1, "coefficients");
+                        mainFunction = new Function(ceArrayList, -50, 50, 0.1, "coefficients");
 
 //                        min = new Point(LocalMinFinder.findFirstMax(ceArrayList));
 //                        firstZero = new Point(LocalMinFinder.findFirstZero(ceArrayList));
 //                        secondZero = new Point(LocalMinFinder.findMultipleZeroes(ceArrayList));
 
                         pointArray[0] = new Point(LocalMinFinder.findFirstMax(ceArrayList));
+                        pointArray[0].type = "Local Vertex";
                         pointArray[1] = new Point(LocalMinFinder.findFirstZero(ceArrayList));
+                        pointArray[1].type = "X-intercept";
                         pointArray[2] = new Point(LocalMinFinder.findMultipleZeroes(ceArrayList));
+                        pointArray[2].type = "X-intercept";
                         pointArray[3] = new Point(LocalMinFinder.findYint(ceArrayList));
+                        pointArray[3].type = "Y-intercept";
 
                     }
                 });
@@ -170,8 +178,8 @@ public class Main implements Runnable, MouseListener, MouseWheelListener, MouseM
         panel.setPreferredSize(new Dimension(WIDTH, HEIGHT));
 //        panel.setLayout(new GridLayout(2,1));
 //        panel.setLayout(null);
-        panel.setLayout(new BorderLayout(0,0));
-        bottomStrip.setLayout(new BorderLayout(0,0));
+        panel.setLayout(new BorderLayout(0, 0));
+        bottomStrip.setLayout(new BorderLayout(0, 0));
 
         canvas = new Canvas();
         canvas.setBounds(0, 0, WIDTH, HEIGHT);
@@ -197,19 +205,23 @@ public class Main implements Runnable, MouseListener, MouseWheelListener, MouseM
         inputArea.addKeyListener(new KeyAdapter() {
             @Override
             public void keyPressed(KeyEvent e) {
-                if(e.getKeyCode() == KeyEvent.VK_ENTER){
+                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
                     ArrayList<Integer> ceArrayList = LocalMinFinder.splitString(inputArea.getText());
                     System.out.println("Textbox was entered");
-                    mainFunction = new Function(ceArrayList,-50,50,0.1, "coefficients");
+                    mainFunction = new Function(ceArrayList, -50, 50, 0.1, "coefficients");
 
 //                    min = new Point(LocalMinFinder.findFirstMax(ceArrayList));
 //                    firstZero = new Point(LocalMinFinder.findFirstZero(ceArrayList));
 //                    secondZero = new Point(LocalMinFinder.findMultipleZeroes(ceArrayList));
 
                     pointArray[0] = new Point(LocalMinFinder.findFirstMax(ceArrayList));
+                    pointArray[0].type = "Local Vertex";
                     pointArray[1] = new Point(LocalMinFinder.findFirstZero(ceArrayList));
+                    pointArray[1].type = "X-intercept";
                     pointArray[2] = new Point(LocalMinFinder.findMultipleZeroes(ceArrayList));
+                    pointArray[2].type = "X-intercept";
                     pointArray[3] = new Point(LocalMinFinder.findYint(ceArrayList));
+                    pointArray[3].type = "Y-intercept";
                 }
             }
         });
@@ -226,24 +238,24 @@ public class Main implements Runnable, MouseListener, MouseWheelListener, MouseM
 
         g.setStroke(new BasicStroke(1));
 
-        for(int i = 0; i < grid.pointsX.length; i++){
-            if(grid.pointsX[i][0] == 0){//This sets the line x = 0 to black and thick so you can see the axis
+        for (int i = 0; i < grid.pointsX.length; i++) {
+            if (grid.pointsX[i][0] == 0) {//This sets the line x = 0 to black and thick so you can see the axis
                 g.setStroke(new BasicStroke(3));
                 g.setColor(Color.black);
             }
-            g.drawLine(grid.tx[i],grid.ty[0],grid.tx[i],grid.ty[0] - grid.tyl);
-            if(grid.pointsX[i][0] == 0){
+            g.drawLine(grid.tx[i], grid.ty[0], grid.tx[i], grid.ty[0] - grid.tyl);
+            if (grid.pointsX[i][0] == 0) {
                 g.setStroke(new BasicStroke(1));
                 g.setColor(Color.lightGray);
             }
         }
-        for(int i = 0; i < grid.pointsY.length; i++){
-            if(grid.pointsY[i][1] == 0){//This sets the line x = 0 to black and thick so you can see the axis
+        for (int i = 0; i < grid.pointsY.length; i++) {
+            if (grid.pointsY[i][1] == 0) {//This sets the line x = 0 to black and thick so you can see the axis
                 g.setStroke(new BasicStroke(3));
                 g.setColor(Color.black);
             }
-            g.drawLine(grid.tx[0],grid.ty[i],grid.tx[0]+grid.txl,grid.ty[i]);
-            if(grid.pointsY[i][1] == 0){//This sets the line x = 0 to black and thick so you can see the axis
+            g.drawLine(grid.tx[0], grid.ty[i], grid.tx[0] + grid.txl, grid.ty[i]);
+            if (grid.pointsY[i][1] == 0) {//This sets the line x = 0 to black and thick so you can see the axis
                 g.setStroke(new BasicStroke(1));
                 g.setColor(Color.lightGray);
             }
@@ -265,9 +277,20 @@ public class Main implements Runnable, MouseListener, MouseWheelListener, MouseM
 //
 //        g.fillOval(secondZero.transformedCoordinates[0]-(4), secondZero.transformedCoordinates[1]-(int)(5), 10,10);
 
-        for(Point p : pointArray){
-            g.fillOval(p.transformedCoordinates[0]-(4), p.transformedCoordinates[1]-(int)(5), 10,10);
+        for (Point p : pointArray) {
+            g.fillOval(p.transformedCoordinates[0] - (4), p.transformedCoordinates[1] - (int) (5), 10, 10);
+            if (p.isDisplaying) {
+                g.setColor(Color.gray);
+                g.drawRoundRect(p.transformedCoordinates[0], p.transformedCoordinates[1], p.boxWidth, 40, 10, 10);
+                g.setColor(Color.white);
+                g.fillRoundRect(p.transformedCoordinates[0], p.transformedCoordinates[1], p.boxWidth, 40, 10, 10);
+                g.setColor(Color.black);
+                g.drawString(p.coordinatePair, p.transformedCoordinates[0]+20, p.transformedCoordinates[1]+25);
+                g.drawString(p.type, p.transformedCoordinates[0], p.transformedCoordinates[1] - 5);
+                g.setColor(Color.lightGray);
+            }
         }
+
 //        g.setColor(otherFunction.functionColor);
 //
 //        for (int i = 0; i < otherFunction.totalPoints - 1; i++) {
@@ -289,7 +312,12 @@ public class Main implements Runnable, MouseListener, MouseWheelListener, MouseM
 
     @Override
     public void mouseClicked(MouseEvent e) {
-
+        for (Point p : pointArray) {
+            if (p.rect.contains(e.getX(), e.getY())) {
+                System.out.println("(" + p.coordinates[0] + ", " + p.coordinates[1] + ")");
+                p.isDisplaying = !p.isDisplaying;
+            }
+        }
     }
 
     @Override
@@ -381,7 +409,7 @@ public class Main implements Runnable, MouseListener, MouseWheelListener, MouseM
         if (e.getKeyCode() == 40) {
             down = true;
         }
-        if(e.getKeyCode() == 10){
+        if (e.getKeyCode() == 10) {
             System.out.println("returned");
         }
     }
