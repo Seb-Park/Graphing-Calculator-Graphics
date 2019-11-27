@@ -55,7 +55,7 @@ public class Main implements Runnable, MouseListener, MouseWheelListener, MouseM
         pointArray[2] = new Point(LocalMinFinder.findMultipleZeroes(new ArrayList<Integer>(Arrays.asList(1, 3, -3))));
         pointArray[2].type = "X-intercept";
         pointArray[3] = new Point(LocalMinFinder.findYint(new ArrayList<Integer>(Arrays.asList(1, 3, -3))));
-        pointArray[3].type = "Y-intercept";
+        pointArray[3].type = " Y-intercept";
 
 //        System.out.println(Arrays.toString(min.coordinates));
 
@@ -168,7 +168,7 @@ public class Main implements Runnable, MouseListener, MouseWheelListener, MouseM
                         pointArray[2] = new Point(LocalMinFinder.findMultipleZeroes(ceArrayList));
                         pointArray[2].type = "X-intercept";
                         pointArray[3] = new Point(LocalMinFinder.findYint(ceArrayList));
-                        pointArray[3].type = "Y-intercept";
+                        pointArray[3].type = " Y-intercept";
 
                     }
                 });
@@ -221,7 +221,7 @@ public class Main implements Runnable, MouseListener, MouseWheelListener, MouseM
                     pointArray[2] = new Point(LocalMinFinder.findMultipleZeroes(ceArrayList));
                     pointArray[2].type = "X-intercept";
                     pointArray[3] = new Point(LocalMinFinder.findYint(ceArrayList));
-                    pointArray[3].type = "Y-intercept";
+                    pointArray[3].type = " Y-intercept";
                 }
             }
         });
