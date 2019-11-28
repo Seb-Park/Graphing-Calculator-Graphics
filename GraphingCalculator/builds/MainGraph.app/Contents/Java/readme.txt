@@ -1,163 +1,67 @@
-Universal Pokemon Randomizer 1.7.2
-by Dabomstew, 2012-16
+MainGraph Graphing Calculator 2019 ©
+by Mr. Hales' Precalculus Honors Class, 2019-20
 
-Homepage: http://pokehacks.dabomstew.com/randomizer/index.php
-Source: https://github.com/Dabomstew/universal-pokemon-randomizer
+https://github.com/Seb-Park/Graphing-Calculator-Graphics/
 
 Contents
 --------
 1. Introduction
 2. Acknowledgements
-3. Libraries Used
-4. Features
-5. How To Use
-6. Games/ROMs supported
+3. Features
+4. How To Use
 7. License
 8. Known Issues
-9. Useful/Interesting Links
 
 Introduction
 ------------
 
-This program allows you to customize your experience playing the Pokemon games
-by randomizing many aspects of them. This means that the Pokemon you get at
-the start of the game, the Pokemon you fight in the wild and the Pokemon 
-trainers have can all be made completely different from the original game.
+This is a graphing calculator program that can take a user-inputed polynomial and place it on a coordinate system with essential points (zeroes, y-intercepts, and vertices). We made this program to learn about how computers can take polynomials and find the essential points differently than a human would.
 
 Acknowledgements
 ----------------
-Many people have put countless hours of their time into researching the
-structures contained within Pokemon games over the years. Without the research
-done by these people, this randomizer would not exist, or would have taken a
-lot longer to create.
-
-To see the full list of contributions, see 
-http://pokehacks.dabomstew.com/randomizer/acks.php
-
-Also thanks to scheibo for forking the randomizer and refactoring some of the 
-structures relating to randomization of games, the majority of which were
-eventually merged in 1.6.3.
-(The fork is at https://github.com/scheibo/universal-pokemon-randomizer/tree/gui)
-
-Libraries Used
---------------
-  * thenewpoketext by loadingNOW for generation 4 text handling
-    http://pokeguide.filb.de/ (source @ https://github.com/magical/ppre )
-  * PPTXT by ProjectPokemon for generation 5 text handling
-    http://projectpokemon.org/forums/showthread.php?11582-PPTXT-Text-editing-tool
-  * Code from ndstool for NDS file extraction/creation (under GPL)
-    http://sourceforge.net/p/devkitpro/ndstool/
-  * Code from CUE's Nintendo DS Compressors for arm9.bin (de)compressing
-    (under GPL)
-	http://gbatemp.net/threads/nintendo-ds-gba-compressors.313278/
-  * DSDecmp for LZ10/11 decompression (under MIT)
-    https://github.com/Barubary/dsdecmp
-  * Code from pokemon-reverse-engineering tools for Gen1/2 pic decompression
-    https://github.com/pret/pokemon-reverse-engineering-tools
+Thank you to:
+* Our Teacher, Mr. Chris Hales
+* Tori Choo (https://github.com/ToriChoo)
+* Thea Chung (https://github.com/TChung21)
+* Timothy Colledge (https://github.com/TimmColl03)
+* Oliver Eielson
+* Kathryn Fernandopulle (https://github.com/kfernandopulle21)
+* Madeleine Fitzgibbon
+* Sebastian Park (https://github.com/Seb-Park)
+* Zachary Rahaman (https://github.com/ramennoodle5)
+* Florance Wu (https://github.com/Florance39)
  
 Features
 --------
-Below is a list of what exactly can be randomized. You may not understand all
-of it if you haven't played Pokemon games much before.
- 
-  * The Starter Pokemon choices
-  * The Wild Pokemon you encounter in grass, caves and other places
-  * The Pokemon that Trainers use against you.
-  * The base stats which define the potential of each Pokemon
-  * The elemental types of each Pokemon
-  * The abilities of each Pokemon, in games where Pokemon have abilities
-  * The Pokemon that each Pokemon evolves into, if it evolved to begin with.
-  * The properties of each move, such as its power, accuracy and typing.
-  * The moves that Pokemon learn by gaining levels
-  * The contents of each TM which can be taught to Pokemon to give them
-    additional moves 
-	(HM moves are not changed to make sure you can still beat the game)
-  * The ability of each Pokemon to learn each TM or HM move
-  * The "static" Pokemon which you either are given, fight on the overworld,
-    or are sold.
-  * The names of trainers & the classes they belong in
-  * The moves that Move Tutors teach, in certain games where they are
-    particularly significant.
-  * The items that it is possible for Pokemon to hold in the wild, and in
-    certain situations the items that Pokemon given to you are holding.
-  * The Pokemon that are traded to you by in-game NPCs (as opposed to
-    trades with real people)
-  * The items you pick up off the ground, from either item balls or
-    hidden spots.
-  
+  * Graphing standard form polynomials on cartesian coordinate system
+  * X-intercepts
+  * Y-intercepts
+  * Local Minimums
+  * Zooming in and out via keyboard or scrolling
+  * Readjusting view via arrow keys
+  * Clickable points
+
 How To Use
 ----------
-Extract this ZIP file before doing anything else!!!
 
-Make sure you have Java 1.6 or later installed, then run the included EXE or JAR file.
+If you have a Mac, you can open the build folder and run the MainGraph.app application and it will run a jar file as a native Mac app. If you are running Windows or Linux, you can also run the Jar separately in the GraphingCalculator/out/artifacts/GraphingCalculator_jar/ folder. The user can also run the "Main.java" class through command prompt or through a text editor. The app is fairly light; it is only 1MB in file size.
 
-If you open the EXE file without Java installed, it should prompt you to
-install it. Follow the prompts and then re-open it once you have Java installed.
-
-If you're using the JAR release, in some situations, you will be able to just
-double-click on the JAR file and the program will run. If not, execute the
-following command from your command line in the directory where you have
-extracted the program:
-
-java -jar randomizer.jar
-
-From there you can open a ROM (legally acquired), customize what you want to be
-randomized, then save the randomized ROM.
-
-Games/ROMs supported
---------------------
-
-Version 1.7.0 supports the following official ROMs:
-
-  * Pokemon Red (any)
-  * Pokemon Blue (any)
-  * Pokemon Green (J)
-  * Pokemon Yellow (any)
-  * Pokemon Gold (any except Korean)
-  * Pokemon Silver (any except Korean)
-  * Pokemon Crystal (any)
-  * Pokemon Ruby (any)
-  * Pokemon Sapphire (any)
-  * Pokemon Emerald (any)
-  * Pokemon FireRed (any)
-  * Pokemon LeafGreen (any)
-  * Pokemon Diamond (any)
-  * Pokemon Pearl (any)
-  * Pokemon Platinum (any)
-  * Pokemon HeartGold (any)
-  * Pokemon SoulSilver (any)
-  * Pokemon Black (any)
-  * Pokemon White (any)
-  * Pokemon Black2 (any)
-  * Pokemon White2 (any)
-  
-As you can see, pretty much every game except the Korean releases of Gold
-and Silver are supported. This is because these releases were very much
-one-offs, and have little to nothing in the way of a ROM hacking community
-which would be needed to make it possible to support them.
-
-Whilst pretty much every release of every game is supported to a good level,
-this randomizer is still targeted at English games - so users of foreign
-language games may still find that the functionality is a bit limited or
-small amounts of English text appear ingame where they did not before.
-
-Randomizing ROM hacks of the above games is not supported for the most part.
-It may still be possible depending on the specifics of the hack itself.
-In general, the simpler a hack is, the more likely it will be able to be randomized.
-Fire Red hacks are more likely to work than any others, due to specific
-code added in 1.7.0 attempting to deal with them.
+Once you have run the program, you can type in an equation in the text field at the bottom. 
+  * The polynomial must be in standard form. 
+  * The exponents are expressed through the "^" character (or Shift+6)
+  * Parenthesis are not yet working correctly
+  * Instead of subtracting a term, the user must add a negative term (e.g. 6x^2-3x will not work; instead use 6x^2+-3x)
+  * Constant terms (where x is raised to a power of 0) must be expressed as terms multiplied by x^0 (e.g. 2x+3x^0)
+  * Coefficients of one must be written out (e.g. 1x^2+1x)
 
 License
 -------
-This project and the majority of the libraries used are under the GNU GPL v3,
-attached as LICENSE.txt.
+This project is licensed under the MIT License, which can be found in License.txt in the root directory.
 
-Source code can be obtained from:
-https://github.com/Dabomstew/universal-pokemon-randomizer
+Source code:
+https://github.com/Seb-Park/Graphing-Calculator-Graphics/
 
-Other libraries used are under more liberal licenses, compatible with the GPL.
-
-Useful/Interesting Links
+Known issues
 ------------------------
-If you have bugs, suggestions, or other concerns to tell me, contact me at
-http://pokehacks.dabomstew.com/randomizer/comments.php
+Sometimes the program does not find all zeroes or local minimums depending on the computer. We are working to fix this bug.
+Zooming into the graph too much will cause the graph to appear choppy as the graph is graphed according to pixel values.
