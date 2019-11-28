@@ -4,7 +4,7 @@ by Mr. Hales' Precalculus Honors Class, 2019-20
 
 https://github.com/Seb-Park/Graphing-Calculator-Graphics/
 
-# Contents
+Contents
 --------
 1. Introduction
 2. Acknowledgements
@@ -13,12 +13,12 @@ https://github.com/Seb-Park/Graphing-Calculator-Graphics/
 5. License
 6. Known Issues
 
-# Introduction
+Introduction
 ------------
 
 This is a graphing calculator program that can take a user-inputed polynomial and place it on a coordinate system with essential points (zeroes, y-intercepts, and vertices). We made this program to learn about how computers can take polynomials and find the essential points differently than a human would.
 
-# Acknowledgements
+Acknowledgements
 ----------------
 Thank you to:
 * Our Teacher, Mr. Chris Hales
@@ -32,7 +32,7 @@ Thank you to:
 * Zachary Rahaman (https://github.com/ramennoodle5)
 * Florance Wu (https://github.com/Florance39)
  
-# Features
+Features
 --------
   * Graphing standard form polynomials on cartesian coordinate system
   * X-intercepts
@@ -42,7 +42,7 @@ Thank you to:
   * Readjusting view via arrow keys
   * Clickable points
 
-# How To Use
+How To Use
 ----------
 
 If you have a Mac, you can open the build folder and run the MainGraph.app application and it will run a jar file as a native Mac app. If you are running Windows or Linux, you can also run the Jar separately in the GraphingCalculator/out/artifacts/GraphingCalculator_jar/ folder. The user can also run the "Main.java" class through command prompt or through a text editor. The app is fairly light; it is only 1MB in file size.
@@ -55,14 +55,14 @@ Once you have run the program, you can type in an equation in the text field at 
   * Constant terms (where x is raised to a power of 0) must be expressed as terms multiplied by x^0 (e.g. 2x+3x^0)
   * Coefficients of one must be written out (e.g. 1x^2+1x)
 
-# License
+License
 -------
 This project is licensed under the MIT License, which can be found in License.txt in the root directory.
 
 Source code:
 https://github.com/Seb-Park/Graphing-Calculator-Graphics/
 
-# Known issues
+Known issues
 ------------------------
 Sometimes the program does not find all zeroes or local minimums depending on the computer. We are working to fix this bug.
 Zooming into the graph too much will cause the graph to appear choppy as the graph is graphed according to pixel values.
