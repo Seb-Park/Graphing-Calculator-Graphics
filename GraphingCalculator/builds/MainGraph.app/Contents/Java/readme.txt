@@ -9,8 +9,8 @@ Contents
 2. Acknowledgements
 3. Features
 4. How To Use
-7. License
-8. Known Issues
+5. License
+6. Known Issues
 
 Introduction
 ------------
