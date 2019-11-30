@@ -65,4 +65,4 @@ https://github.com/Seb-Park/Graphing-Calculator-Graphics/
 Known issues
 ------------------------
 Sometimes the program does not find all zeroes or local minimums depending on the computer. We are working to fix this bug.
-Zooming into the graph too much will cause the graph to appear choppy as the graph is graphed according to pixel values.
+Zooming into the graph too much will cause the graph to appear choppy as the graph is graphed according to pixel values. It does also not yet find inflection points for polynomials with an odd highest exponent.
