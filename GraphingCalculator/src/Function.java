@@ -10,6 +10,8 @@ public class Function {
     public int xScale = 15, yScale = 1;
     public int xFocus, yFocus = 0;
 
+    public ArrayList holes;
+
     public Color functionColor;
 
     public Function(int min, int max, double precision) {
@@ -109,8 +111,8 @@ public class Function {
 
             for (double x = min; x < max; x += precision) {
 //            points[counter] = new double[]{i, Math.pow(i, 4) + 3 * Math.pow(i, 3) + 6 * i + 4};
-                double ypos = x-inputs.get(0);//initialize what the y coordinate will be. It starts at zero and we add on.
-                if(inputs.size()>1) {
+                double ypos = x - inputs.get(0);//initialize what the y coordinate will be. It starts at zero and we add on.
+                if (inputs.size() > 1) {
                     for (int n = 1; n < inputs.size(); n++) {
                         ypos *= (double) (x - inputs.get(n));
                     }
@@ -124,6 +126,56 @@ public class Function {
 //                        System.out.println(Arrays.deepToString(points));
 
             }
+        }
+
+
+    }
+
+    public Function(ArrayList<Integer> inputsT, ArrayList<Integer> inputsB, int min, int max, double precision) {
+        functionColor = new Color(41, 196, 254);
+
+        int counter = 0;
+        totalPoints = (int) ((max - min) / precision);
+        points = new double[totalPoints][2];
+        transformedPoints = new double[totalPoints][2];
+        xCo = new int[totalPoints];
+        yCo = new int[totalPoints];
+        holes = new ArrayList<>();
+
+
+        for (double x = min; x < max; x += precision) {
+//            points[counter] = new double[]{i, Math.pow(i, 4) + 3 * Math.pow(i, 3) + 6 * i + 4};
+            double num = 0;
+            double denom = 0;
+            double ypos = 0;//initialize what the y coordinate will be. It starts at zero and we add on.
+            for (int n = 0; n < inputsT.size(); n++) {
+                //for each of the coefficients in the arraylist,
+                // add to the y coordinate the coefficient * x to the (length of the arraylist - n) power.
+                // For example, if the arraylist were 6 integers long, and the first item in the arraylist were 3,
+                // this for loop would add to the y coordinate 3 * x^(6-0) or 3x^6.
+                num += (double) inputsT.get(n) * Math.pow(x, inputsT.size() - n - 1);
+            }
+
+            for (int n = 0; n < inputsB.size(); n++) {
+                //for each of the coefficients in the arraylist,
+                // add to the y coordinate the coefficient * x to the (length of the arraylist - n) power.
+                // For example, if the arraylist were 6 integers long, and the first item in the arraylist were 3,
+                // this for loop would add to the y coordinate 3 * x^(6-0) or 3x^6.
+                denom += (double) inputsB.get(n) * Math.pow(x, inputsB.size() - n - 1);
+            }
+            if(denom!=0) {
+                ypos = num / denom;
+                points[counter] = new double[]{x, ypos};
+                xCo[counter] = (int) (points[counter][0] * xScale + 500 + xFocus);
+                yCo[counter] = (int) ((points[counter][1]) * -1 + 350 + yFocus);
+            }
+            else
+            {
+                holes.add(x);
+            }
+            counter++;
+//                        System.out.println(Arrays.deepToString(points));
+
         }
 
 

@@ -46,16 +46,31 @@ public class Main implements Runnable, MouseListener, MouseWheelListener, MouseM
 //        firstZero = new Point(LocalMinFinder.findFirstZero(new ArrayList<Integer>(Arrays.asList(1,3,-3))));
 //        secondZero = new Point(LocalMinFinder.findMultipleZeroes(new ArrayList<Integer>(Arrays.asList(1,3,-3))));
 
-        pointArray = new Point[4];
 
-        pointArray[0] = new Point(LocalMinFinder.findFirstMax(new ArrayList<Integer>(Arrays.asList(1, 3, -3))));
-        pointArray[0].type = "Local Vertex";
-        pointArray[1] = new Point(LocalMinFinder.findFirstZero(new ArrayList<Integer>(Arrays.asList(1, 3, -3))));
-        pointArray[1].type = "X-intercept";
-        pointArray[2] = new Point(LocalMinFinder.findMultipleZeroes(new ArrayList<Integer>(Arrays.asList(1, 3, -3))));
-        pointArray[2].type = "X-intercept";
-        pointArray[3] = new Point(LocalMinFinder.findYint(new ArrayList<Integer>(Arrays.asList(1, 3, -3))));
-        pointArray[3].type = " Y-intercept";
+        if (LocalMinFinder.findSecondMax(new ArrayList<Integer>(Arrays.asList(1, 3, -3))) != null) {
+            pointArray = new Point[5];
+            pointArray[0] = new Point(LocalMinFinder.findFirstMax(new ArrayList<Integer>(Arrays.asList(1, 3, -3))));
+            pointArray[0].type = "Local Vertex";
+            pointArray[1] = new Point(LocalMinFinder.findFirstZero(new ArrayList<Integer>(Arrays.asList(1, 3, -3))));
+            pointArray[1].type = "X-intercept";
+            pointArray[2] = new Point(LocalMinFinder.findMultipleZeroes(new ArrayList<Integer>(Arrays.asList(1, 3, -3))));
+            pointArray[2].type = "X-intercept";
+            pointArray[3] = new Point(LocalMinFinder.findYint(new ArrayList<Integer>(Arrays.asList(1, 3, -3))));
+            pointArray[3].type = " Y-intercept";
+            pointArray[4] = new Point(LocalMinFinder.findSecondMax(new ArrayList<Integer>(Arrays.asList(1, 3, -3))));
+            pointArray[4].type = "Local Vertex";
+        } else {
+            pointArray = new Point[4];
+            pointArray[0] = new Point(LocalMinFinder.findFirstMax(new ArrayList<Integer>(Arrays.asList(1, 3, -3))));
+            pointArray[0].type = "Local Vertex";
+            pointArray[1] = new Point(LocalMinFinder.findFirstZero(new ArrayList<Integer>(Arrays.asList(1, 3, -3))));
+            pointArray[1].type = "X-intercept";
+            pointArray[2] = new Point(LocalMinFinder.findMultipleZeroes(new ArrayList<Integer>(Arrays.asList(1, 3, -3))));
+            pointArray[2].type = "X-intercept";
+            pointArray[3] = new Point(LocalMinFinder.findYint(new ArrayList<Integer>(Arrays.asList(1, 3, -3))));
+            pointArray[3].type = " Y-intercept";
+        }
+
 
 //        System.out.println(Arrays.toString(min.coordinates));
 
@@ -128,7 +143,9 @@ public class Main implements Runnable, MouseListener, MouseWheelListener, MouseM
         otherFunction.transform(grid.xScale, grid.yScale, grid.xFocus, grid.yFocus);
 //        secondZero.transform(grid.xScale,grid.yScale,grid.xFocus,grid.yFocus);
         for (Point p : pointArray) {
-            p.transform(grid.xScale, grid.yScale, grid.xFocus, grid.yFocus);
+            if(p!=null) {
+                p.transform(grid.xScale, grid.yScale, grid.xFocus, grid.yFocus);
+            }
         }
     }
 
@@ -161,15 +178,29 @@ public class Main implements Runnable, MouseListener, MouseWheelListener, MouseM
 //                        firstZero = new Point(LocalMinFinder.findFirstZero(ceArrayList));
 //                        secondZero = new Point(LocalMinFinder.findMultipleZeroes(ceArrayList));
 
-                        pointArray[0] = new Point(LocalMinFinder.findFirstMax(ceArrayList));
-                        pointArray[0].type = "Local Vertex";
-                        pointArray[1] = new Point(LocalMinFinder.findFirstZero(ceArrayList));
-                        pointArray[1].type = "X-intercept";
-                        pointArray[2] = new Point(LocalMinFinder.findMultipleZeroes(ceArrayList));
-                        pointArray[2].type = "X-intercept";
-                        pointArray[3] = new Point(LocalMinFinder.findYint(ceArrayList));
-                        pointArray[3].type = " Y-intercept";
-
+                        if (LocalMinFinder.findSecondMax(ceArrayList) != null) {
+                            pointArray = new Point[5];
+                            pointArray[0] = new Point(LocalMinFinder.findFirstMax(ceArrayList));
+                            pointArray[0].type = "Local Vertex";
+                            pointArray[1] = new Point(LocalMinFinder.findFirstZero(ceArrayList));
+                            pointArray[1].type = "X-intercept";
+                            pointArray[2] = new Point(LocalMinFinder.findMultipleZeroes(ceArrayList));
+                            pointArray[2].type = "X-intercept";
+                            pointArray[3] = new Point(LocalMinFinder.findYint(ceArrayList));
+                            pointArray[3].type = " Y-intercept";
+                            pointArray[4] = new Point(LocalMinFinder.findSecondMax(ceArrayList));
+                            pointArray[4].type = "Local Vertex";
+                        } else {
+                            pointArray = new Point[4];
+                            pointArray[0] = new Point(LocalMinFinder.findFirstMax(ceArrayList));
+                            pointArray[0].type = "Local Vertex";
+                            pointArray[1] = new Point(LocalMinFinder.findFirstZero(ceArrayList));
+                            pointArray[1].type = "X-intercept";
+                            pointArray[2] = new Point(LocalMinFinder.findMultipleZeroes(ceArrayList));
+                            pointArray[2].type = "X-intercept";
+                            pointArray[3] = new Point(LocalMinFinder.findYint(ceArrayList));
+                            pointArray[3].type = " Y-intercept";
+                        }
                     }
                 });
 
@@ -214,14 +245,37 @@ public class Main implements Runnable, MouseListener, MouseWheelListener, MouseM
 //                    firstZero = new Point(LocalMinFinder.findFirstZero(ceArrayList));
 //                    secondZero = new Point(LocalMinFinder.findMultipleZeroes(ceArrayList));
 
-                    pointArray[0] = new Point(LocalMinFinder.findFirstMax(ceArrayList));
-                    pointArray[0].type = "Local Vertex";
-                    pointArray[1] = new Point(LocalMinFinder.findFirstZero(ceArrayList));
-                    pointArray[1].type = "X-intercept";
-                    pointArray[2] = new Point(LocalMinFinder.findMultipleZeroes(ceArrayList));
-                    pointArray[2].type = "X-intercept";
-                    pointArray[3] = new Point(LocalMinFinder.findYint(ceArrayList));
-                    pointArray[3].type = " Y-intercept";
+//                    pointArray[0] = new Point(LocalMinFinder.findFirstMax(ceArrayList));
+//                    pointArray[0].type = "Local Vertex";
+//                    pointArray[1] = new Point(LocalMinFinder.findFirstZero(ceArrayList));
+//                    pointArray[1].type = "X-intercept";
+//                    pointArray[2] = new Point(LocalMinFinder.findMultipleZeroes(ceArrayList));
+//                    pointArray[2].type = "X-intercept";
+//                    pointArray[3] = new Point(LocalMinFinder.findYint(ceArrayList));
+//                    pointArray[3].type = " Y-intercept";
+                    if (LocalMinFinder.findSecondMax(ceArrayList) != null) {
+                        pointArray = new Point[5];
+                        pointArray[0] = new Point(LocalMinFinder.findFirstMax(ceArrayList));
+                        pointArray[0].type = "Local Vertex";
+                        pointArray[1] = new Point(LocalMinFinder.findFirstZero(ceArrayList));
+                        pointArray[1].type = "X-intercept";
+                        pointArray[2] = new Point(LocalMinFinder.findMultipleZeroes(ceArrayList));
+                        pointArray[2].type = "X-intercept";
+                        pointArray[3] = new Point(LocalMinFinder.findYint(ceArrayList));
+                        pointArray[3].type = " Y-intercept";
+                        pointArray[4] = new Point(LocalMinFinder.findSecondMax(ceArrayList));
+                        pointArray[4].type = "Local Vertex";
+                    } else {
+                        pointArray = new Point[4];
+                        pointArray[0] = new Point(LocalMinFinder.findFirstMax(ceArrayList));
+                        pointArray[0].type = "Local Vertex";
+                        pointArray[1] = new Point(LocalMinFinder.findFirstZero(ceArrayList));
+                        pointArray[1].type = "X-intercept";
+                        pointArray[2] = new Point(LocalMinFinder.findMultipleZeroes(ceArrayList));
+                        pointArray[2].type = "X-intercept";
+                        pointArray[3] = new Point(LocalMinFinder.findYint(ceArrayList));
+                        pointArray[3].type = " Y-intercept";
+                    }
                 }
             }
         });
@@ -279,13 +333,13 @@ public class Main implements Runnable, MouseListener, MouseWheelListener, MouseM
 
         for (Point p : pointArray) {
             g.fillOval(p.transformedCoordinates[0] - (4), p.transformedCoordinates[1] - (int) (5), 10, 10);
-            if (p.isDisplaying) {
+            if (p.isDisplaying&&p!=null) {
                 g.setColor(Color.gray);
                 g.drawRoundRect(p.transformedCoordinates[0], p.transformedCoordinates[1], p.boxWidth, 40, 10, 10);
                 g.setColor(Color.white);
                 g.fillRoundRect(p.transformedCoordinates[0], p.transformedCoordinates[1], p.boxWidth, 40, 10, 10);
                 g.setColor(Color.black);
-                g.drawString(p.coordinatePair, p.transformedCoordinates[0]+20, p.transformedCoordinates[1]+25);
+                g.drawString(p.coordinatePair, p.transformedCoordinates[0] + 20, p.transformedCoordinates[1] + 25);
                 g.drawString(p.type, p.transformedCoordinates[0], p.transformedCoordinates[1] - 5);
                 g.setColor(Color.lightGray);
             }
