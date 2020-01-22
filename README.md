@@ -1,6 +1,6 @@
 # Graphing-Calculator-Graphics
 
-![Alt text](/GraphingCalculator/builds/Icon.png?raw=true "Grafit Icon")
+![Alt text](/GraphingCalculator/builds/iconPrev.png?raw=true "Grafit Icon")
 
 Grafit! Graphing Calculator 2019 ©
 by Mr. Hales' Precalculus Honors Class, 2019-20
