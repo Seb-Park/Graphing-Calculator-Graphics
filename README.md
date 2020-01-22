@@ -1,4 +1,4 @@
-# Graphing-Calculator-Graphics
+# Grafit!
 
 ![Alt text](/GraphingCalculator/builds/iconPrev.png?raw=true "Grafit Icon")
 
