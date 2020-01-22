@@ -7,8 +7,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2a8e9eba-9abc-468c-9fae-bb57033e6114" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/Grafit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Grafit.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" beforeDir="false" afterPath="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/builds/Grafit!.app/Contents/Info.plist" beforeDir="false" afterPath="$PROJECT_DIR$/builds/Grafit!.app/Contents/Info.plist" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -88,7 +87,7 @@
         <entry file="file://$PROJECT_DIR$/src/LocalMinFinder.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="811">
-              <caret line="170" column="100" lean-forward="true" selection-start-line="170" selection-start-column="100" selection-end-line="170" selection-end-column="100" />
+              <caret line="170" column="100" selection-start-line="170" selection-start-column="100" selection-end-line="170" selection-end-column="100" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -99,7 +98,7 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Grafit.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
+            <state relative-caret-position="-756">
               <caret line="155" column="35" selection-start-line="155" selection-start-column="35" selection-end-line="155" selection-end-column="35" />
             </state>
           </provider>
@@ -261,7 +260,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1579657914081" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1579657921320" />
     <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -331,7 +330,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="851" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.26037195" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -435,7 +433,7 @@
     <entry file="file://$PROJECT_DIR$/src/LocalMinFinder.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="811">
-          <caret line="170" column="100" lean-forward="true" selection-start-line="170" selection-start-column="100" selection-end-line="170" selection-end-column="100" />
+          <caret line="170" column="100" selection-start-line="170" selection-start-column="100" selection-end-line="170" selection-end-column="100" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -444,7 +442,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Grafit.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
+        <state relative-caret-position="-756">
           <caret line="155" column="35" selection-start-line="155" selection-start-column="35" selection-end-line="155" selection-end-column="35" />
         </state>
       </provider>
