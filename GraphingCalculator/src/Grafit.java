@@ -153,7 +153,7 @@ public class Grafit implements Runnable, MouseListener, MouseWheelListener, Mous
 
     private void setUpGraphics() {
 
-        frame = new JFrame("Graph");
+        frame = new JFrame("Grafit!");
         inputArea = new JTextField();
         goButton = new JButton("Go!");
         goButton.addActionListener(
