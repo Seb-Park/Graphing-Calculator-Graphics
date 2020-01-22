@@ -255,20 +255,51 @@ public class Grafit implements Runnable, MouseListener, MouseWheelListener, Mous
     }
 
     public void setKeyPoints(ArrayList<Integer> ceArrayList) {
-        pointArray = new Point[4+ceArrayList.size()-2];
+        pointArray = new Point[5+ceArrayList.size()-2];
         pointArray[0] = new Point(LocalMinFinder.findYint(ceArrayList));
         pointArray[0].type = " Y-intercept";
         pointArray[1] = new Point(LocalMinFinder.findFirstMax(ceArrayList));
         pointArray[1].type = "Local Vertex";
         pointArray[2] = new Point(LocalMinFinder.findSecondMax(ceArrayList));
         pointArray[2].type = "Local Vertex";
-        pointArray[3] = new Point(LocalMinFinder.findFirstZero(ceArrayList));
-        pointArray[3].type = "X-intercept";
-        for(int i = 4; i < pointArray.length; i++){
+        pointArray[3] = new Point(LocalMinFinder.findSecondMax(ceArrayList));
+        pointArray[3].type = "Local Vertex";
+        pointArray[4] = new Point(LocalMinFinder.findFirstZero(ceArrayList));
+        pointArray[4].type = "X-intercept";
+        for(int i = 5; i < pointArray.length; i++){
             pointArray[i] = new Point(LocalMinFinder.findMultipleZeroes(ceArrayList));
             pointArray[i].type = "X-intercept";
         }
+    }
 
+    public void setAllKeyPoints(ArrayList<Integer> ceArrayList){
+        int arrayCounter = 0;
+        pointArray = new Point[1+ceArrayList.size()-1+ceArrayList.size()-1];
+        pointArray[0] = new Point(LocalMinFinder.findYint(ceArrayList));
+        pointArray[0].type = " Y-intercept";
+        arrayCounter++;
+
+        if(ceArrayList.size()>=1){
+            pointArray[arrayCounter] = new Point(LocalMinFinder.findFirstMax(ceArrayList));
+            pointArray[arrayCounter].type = "Local Vertex";
+            arrayCounter++;
+        }
+        for(int i = 1; i < ceArrayList.size(); i++){
+            pointArray[arrayCounter] = new Point(LocalMinFinder.findSecondMax(ceArrayList));
+            pointArray[arrayCounter].type = "Local Vertex";
+            arrayCounter++;
+        }
+
+        if(ceArrayList.size()>=1){
+            pointArray[arrayCounter] = new Point(LocalMinFinder.findFirstZero(ceArrayList));
+            pointArray[arrayCounter].type = "X-intercept";
+            arrayCounter++;
+        }
+        for(int i = 1; i < ceArrayList.size(); i++){
+            pointArray[arrayCounter] = new Point(LocalMinFinder.findMultipleZeroes(ceArrayList));
+            pointArray[arrayCounter].type = "X-intercept";
+            arrayCounter++;
+        }
     }
 
     private void render() {
