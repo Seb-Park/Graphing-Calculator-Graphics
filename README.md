@@ -45,7 +45,7 @@ Features
 How To Use
 ----------
 
-If you have a Mac, you can open the build folder and run the MainGraph.app application and it will run a jar file as a native Mac app. If you are running Windows or Linux, you can also run the Jar separately in the GraphingCalculator/out/artifacts/GraphingCalculator_jar/ folder. The user can also run the "Main.java" class through command prompt or through a text editor. The app is fairly light; it is only 1MB in file size.
+If you have a Mac, you can open the build folder and run the Grafit!.app application and it will run a jar file as a native Mac app. If you are running Windows or Linux, you can also run the Jar separately in the GraphingCalculator/out/artifacts/GraphingCalculator_jar/ folder. The user can also run the "Main.java" class through command prompt or through a text editor. The app is fairly light; it is only 1MB in file size.
 
 Once you have run the program, you can type in an equation in the text field at the bottom. 
   * The polynomial must be in standard form. 
@@ -64,5 +64,5 @@ https://github.com/Seb-Park/Graphing-Calculator-Graphics/
 
 Known issues
 ------------------------
-Sometimes the program does not find all zeroes or local minimums depending on the computer. We are working to fix this bug.
+~~Sometimes the program does not find all zeroes or local minimums depending on the computer. We are working to fix this bug.~~
 Zooming into the graph too much will cause the graph to appear choppy as the graph is graphed according to pixel values. It does also not yet find inflection points for polynomials with an odd highest exponent.
