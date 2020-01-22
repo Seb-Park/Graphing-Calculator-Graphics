@@ -7,7 +7,7 @@ import java.awt.image.BufferStrategy;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class Main implements Runnable, MouseListener, MouseWheelListener, MouseMotionListener, KeyListener {
+public class Grafit implements Runnable, MouseListener, MouseWheelListener, MouseMotionListener, KeyListener {
 
     final int WIDTH = 1000;
     final int HEIGHT = 700;
@@ -34,7 +34,7 @@ public class Main implements Runnable, MouseListener, MouseWheelListener, MouseM
     public boolean isShift, up, down, left, right;
     public boolean scrollUp, scrollDown;
 
-    public Main() {
+    public Grafit() {
 
         otherFunction = new Function(new ArrayList<Integer>(Arrays.asList(20, 45, -3, 13)), -50, 50, 0.1, "coefficients");
         mainFunction = new Function(new ArrayList<Integer>(Arrays.asList(1, 2, 3, 4, 5)), -50, 50, 0.1, "zeroes");
@@ -77,7 +77,7 @@ public class Main implements Runnable, MouseListener, MouseWheelListener, MouseM
     }
 
     public static void main(String[] args) {
-        Main ex = new Main();
+        Grafit ex = new Grafit();
         new Thread(ex).start();
     }
 
