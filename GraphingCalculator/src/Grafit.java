@@ -92,6 +92,20 @@ public class Grafit implements Runnable, MouseListener, MouseWheelListener, Mous
     }
 
 
+    public void center(){
+        grid.transform(25,25,0,0);
+        mainFunction.transform(grid.xScale, grid.yScale, grid.xFocus, grid.yFocus);
+//        min.transform(grid.xScale,grid.yScale,grid.xFocus,grid.yFocus);
+//        firstZero.transform(grid.xScale,grid.yScale,grid.xFocus,grid.yFocus);
+        otherFunction.transform(grid.xScale, grid.yScale, grid.xFocus, grid.yFocus);
+//        secondZero.transform(grid.xScale,grid.yScale,grid.xFocus,grid.yFocus);
+        for (Point p : pointArray) {
+            if (p != null) {
+                p.transform(grid.xScale, grid.yScale, grid.xFocus, grid.yFocus);
+            }
+        }
+    }
+
     public void scale() {
         if (scrollUp) {
             grid.transform(grid.xScale + 3, grid.yScale + 3, grid.xFocus, grid.yFocus);
@@ -463,7 +477,9 @@ public class Grafit implements Runnable, MouseListener, MouseWheelListener, Mous
 
     @Override
     public void keyTyped(KeyEvent e) {
-
+        if(e.getKeyChar() == 'c'){
+            center();
+        }
     }
 
     @Override
