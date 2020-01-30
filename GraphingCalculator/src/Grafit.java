@@ -13,7 +13,8 @@ public class Grafit implements Runnable, MouseListener, MouseWheelListener, Mous
     final int HEIGHT = 700;
 
     public JFrame frame;
-    public JTextField inputArea;
+    public JTextField inputArea, inputAreaBottom;
+    public JPanel inputGridContainer;
     public JPanel bottomStrip;
     public JButton goButton;
     public Canvas canvas;
@@ -42,13 +43,14 @@ public class Grafit implements Runnable, MouseListener, MouseWheelListener, Mous
 //        mainFunction = new Function(new ArrayList<Integer>(Arrays.asList(3, 0, 2, 4, -21)), -50, 50, .1, "coefficients");
 //        min = new Point(LocalMinFinder.findFirstMax(new ArrayList<Integer>(Arrays.asList(3, 0, 2, 4, -21))));
         mainFunction = new Function(new ArrayList<Integer>(Arrays.asList(1, 3, -3)), -50, 50, 0.1, "coefficients");
-//        min = new Point(LocalMinFinder.findFirstMax(new ArrayList<Integer>(Arrays.asList(1,3,-3))));
+//        mainFunction = new Function(new ArrayList<Integer>(Arrays.asList(1)), new ArrayList<Integer>(Arrays.asList(1, 0)), -50, 50, 0.1);
+        //        min = new Point(LocalMinFinder.findFirstMax(new ArrayList<Integer>(Arrays.asList(1,3,-3))));
 //        firstZero = new Point(LocalMinFinder.findFirstZero(new ArrayList<Integer>(Arrays.asList(1,3,-3))));
 //        secondZero = new Point(LocalMinFinder.findMultipleZeroes(new ArrayList<Integer>(Arrays.asList(1,3,-3))));
 
 
 //        if (LocalMinFinder.findSecondMax(new ArrayList<Integer>(Arrays.asList(1, 3, -3))) != null) {
-        setKeyPoints(new ArrayList<Integer>(Arrays.asList(1,3,-3)));
+        setKeyPoints(new ArrayList<Integer>(Arrays.asList(1, 3, -3)));
 //        } else {
 //            pointArray = new Point[4];
 //            pointArray[0] = new Point(LocalMinFinder.findFirstMax(new ArrayList<Integer>(Arrays.asList(1, 3, -3))));
@@ -92,8 +94,8 @@ public class Grafit implements Runnable, MouseListener, MouseWheelListener, Mous
     }
 
 
-    public void center(){
-        grid.transform(25,25,0,0);
+    public void center() {
+        grid.transform(25, 25, 0, 0);
         mainFunction.transform(grid.xScale, grid.yScale, grid.xFocus, grid.yFocus);
 //        min.transform(grid.xScale,grid.yScale,grid.xFocus,grid.yFocus);
 //        firstZero.transform(grid.xScale,grid.yScale,grid.xFocus,grid.yFocus);
@@ -169,6 +171,8 @@ public class Grafit implements Runnable, MouseListener, MouseWheelListener, Mous
 
         frame = new JFrame("Grafit!");
         inputArea = new JTextField();
+        inputAreaBottom = new JTextField();
+        inputGridContainer = new JPanel(new GridLayout(2, 1));
         goButton = new JButton("Go!");
         goButton.addActionListener(
                 new ActionListener() {
@@ -183,7 +187,7 @@ public class Grafit implements Runnable, MouseListener, MouseWheelListener, Mous
 //                        secondZero = new Point(LocalMinFinder.findMultipleZeroes(ceArrayList));
 
 //                        if (LocalMinFinder.findSecondMax(ceArrayList) != null) {
-                            setKeyPoints(ceArrayList);
+                        setKeyPoints(ceArrayList);
 //                        } else {
 //                            pointArray = new Point[4];
 //                            pointArray[0] = new Point(LocalMinFinder.findFirstMax(ceArrayList));
@@ -212,8 +216,12 @@ public class Grafit implements Runnable, MouseListener, MouseWheelListener, Mous
 
 //        panel.add(canvas);
 //        panel.add(inputArea);
+
+        inputGridContainer.add(inputArea);
+        inputGridContainer.add(inputAreaBottom);
+
         panel.add(BorderLayout.SOUTH, bottomStrip);
-        bottomStrip.add(BorderLayout.CENTER, inputArea);
+        bottomStrip.add(BorderLayout.CENTER, inputGridContainer);
         bottomStrip.add(BorderLayout.WEST, new JLabel("  y ="));
         bottomStrip.add(BorderLayout.EAST, goButton);
         panel.add(BorderLayout.CENTER, canvas);
@@ -231,35 +239,48 @@ public class Grafit implements Runnable, MouseListener, MouseWheelListener, Mous
             @Override
             public void keyPressed(KeyEvent e) {
                 if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-                    ArrayList<Integer> ceArrayList = LocalMinFinder.splitString(inputArea.getText());
-                    System.out.println("Textbox was entered");
-                    mainFunction = new Function(ceArrayList, -50, 50, 0.1, "coefficients");
+                    try {
+                        ArrayList<Integer> ceArrayListT = LocalMinFinder.splitString(inputArea.getText());
+                        ArrayList<Integer> ceArrayListB = LocalMinFinder.splitString(inputAreaBottom.getText());
+                        mainFunction = new Function(ceArrayListT, ceArrayListB, -50, 50, 0.1);
+                    } catch (Exception ex) {
+                        try {
+                            ArrayList<Integer> ceArrayList = LocalMinFinder.splitString(inputArea.getText());
+                            System.out.println("Textbox was entered");
+                            mainFunction = new Function(ceArrayList, -50, 50, 0.1, "coefficients");
+                            setKeyPoints(ceArrayList);
+                        } catch (Exception secondLevelEx) {
+                            ArrayList<Integer> ceArrayList = LocalMinFinder.splitString(inputAreaBottom.getText());
+                            System.out.println("Textbox was entered");
+                            mainFunction = new Function(ceArrayList, -50, 50, 0.1, "coefficients");
+                            setKeyPoints(ceArrayList);
+                        }
+                    }
+                }
+            }
+        });
 
-//                    min = new Point(LocalMinFinder.findFirstMax(ceArrayList));
-//                    firstZero = new Point(LocalMinFinder.findFirstZero(ceArrayList));
-//                    secondZero = new Point(LocalMinFinder.findMultipleZeroes(ceArrayList));
-
-//                    pointArray[0] = new Point(LocalMinFinder.findFirstMax(ceArrayList));
-//                    pointArray[0].type = "Local Vertex";
-//                    pointArray[1] = new Point(LocalMinFinder.findFirstZero(ceArrayList));
-//                    pointArray[1].type = "X-intercept";
-//                    pointArray[2] = new Point(LocalMinFinder.findMultipleZeroes(ceArrayList));
-//                    pointArray[2].type = "X-intercept";
-//                    pointArray[3] = new Point(LocalMinFinder.findYint(ceArrayList));
-//                    pointArray[3].type = " Y-intercept";
-//                    if (LocalMinFinder.findSecondMax(ceArrayList) != null) {
-                    setKeyPoints(ceArrayList);
-//                    } else {
-//                        pointArray = new Point[4];
-//                        pointArray[0] = new Point(LocalMinFinder.findFirstMax(ceArrayList));
-//                        pointArray[0].type = "Local Vertex";
-//                        pointArray[1] = new Point(LocalMinFinder.findFirstZero(ceArrayList));
-//                        pointArray[1].type = "X-intercept";
-//                        pointArray[2] = new Point(LocalMinFinder.findMultipleZeroes(ceArrayList));
-//                        pointArray[2].type = "X-intercept";
-//                        pointArray[3] = new Point(LocalMinFinder.findYint(ceArrayList));
-//                        pointArray[3].type = " Y-intercept";
-//                    }
+        inputAreaBottom.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                    try {
+                        ArrayList<Integer> ceArrayListT = LocalMinFinder.splitString(inputArea.getText());
+                        ArrayList<Integer> ceArrayListB = LocalMinFinder.splitString(inputAreaBottom.getText());
+                        mainFunction = new Function(ceArrayListT, ceArrayListB, -50, 50, 0.1);
+                    } catch (Exception ex) {
+                        try {
+                            ArrayList<Integer> ceArrayList = LocalMinFinder.splitString(inputAreaBottom.getText());
+                            System.out.println("Textbox was entered");
+                            mainFunction = new Function(ceArrayList, -50, 50, 0.1, "coefficients");
+                            setKeyPoints(ceArrayList);
+                        } catch (Exception secondLevelEx){
+                            ArrayList<Integer> ceArrayList = LocalMinFinder.splitString(inputArea.getText());
+                            System.out.println("Textbox was entered");
+                            mainFunction = new Function(ceArrayList, -50, 50, 0.1, "coefficients");
+                            setKeyPoints(ceArrayList);
+                        }
+                    }
                 }
             }
         });
@@ -269,7 +290,7 @@ public class Grafit implements Runnable, MouseListener, MouseWheelListener, Mous
     }
 
     public void setKeyPoints(ArrayList<Integer> ceArrayList) {
-        pointArray = new Point[5+ceArrayList.size()-2];
+        pointArray = new Point[5 + ceArrayList.size() - 2];
         pointArray[0] = new Point(LocalMinFinder.findYint(ceArrayList));
         pointArray[0].type = " Y-intercept";
         pointArray[1] = new Point(LocalMinFinder.findFirstMax(ceArrayList));
@@ -280,36 +301,36 @@ public class Grafit implements Runnable, MouseListener, MouseWheelListener, Mous
         pointArray[3].type = "Local Vertex";
         pointArray[4] = new Point(LocalMinFinder.findFirstZero(ceArrayList));
         pointArray[4].type = "X-intercept";
-        for(int i = 5; i < pointArray.length; i++){
+        for (int i = 5; i < pointArray.length; i++) {
             pointArray[i] = new Point(LocalMinFinder.findMultipleZeroes(ceArrayList));
             pointArray[i].type = "X-intercept";
         }
     }
 
-    public void setAllKeyPoints(ArrayList<Integer> ceArrayList){
+    public void setAllKeyPoints(ArrayList<Integer> ceArrayList) {
         int arrayCounter = 0;
-        pointArray = new Point[1+ceArrayList.size()-1+ceArrayList.size()-1];
+        pointArray = new Point[1 + ceArrayList.size() - 1 + ceArrayList.size() - 1];
         pointArray[0] = new Point(LocalMinFinder.findYint(ceArrayList));
         pointArray[0].type = " Y-intercept";
         arrayCounter++;
 
-        if(ceArrayList.size()>=1){
+        if (ceArrayList.size() >= 1) {
             pointArray[arrayCounter] = new Point(LocalMinFinder.findFirstMax(ceArrayList));
             pointArray[arrayCounter].type = "Local Vertex";
             arrayCounter++;
         }
-        for(int i = 1; i < ceArrayList.size(); i++){
+        for (int i = 1; i < ceArrayList.size(); i++) {
             pointArray[arrayCounter] = new Point(LocalMinFinder.findSecondMax(ceArrayList));
             pointArray[arrayCounter].type = "Local Vertex";
             arrayCounter++;
         }
 
-        if(ceArrayList.size()>=1){
+        if (ceArrayList.size() >= 1) {
             pointArray[arrayCounter] = new Point(LocalMinFinder.findFirstZero(ceArrayList));
             pointArray[arrayCounter].type = "X-intercept";
             arrayCounter++;
         }
-        for(int i = 1; i < ceArrayList.size(); i++){
+        for (int i = 1; i < ceArrayList.size(); i++) {
             pointArray[arrayCounter] = new Point(LocalMinFinder.findMultipleZeroes(ceArrayList));
             pointArray[arrayCounter].type = "X-intercept";
             arrayCounter++;
@@ -477,7 +498,7 @@ public class Grafit implements Runnable, MouseListener, MouseWheelListener, Mous
 
     @Override
     public void keyTyped(KeyEvent e) {
-        if(e.getKeyChar() == 'c'){
+        if (e.getKeyChar() == 'c') {
             center();
         }
     }
