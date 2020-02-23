@@ -25,15 +25,15 @@ Acknowledgements
 ----------------
 Thank you to:
 * Our Teacher, Mr. Chris Hales
-* Tori Choo (https://github.com/ToriChoo)
-* Thea Chung (https://github.com/TChung21)
-* Timothy Colledge (https://github.com/TimmColl03)
+* [Tori Choo](https://github.com/ToriChoo)
+* [Thea Chung](https://github.com/TChung21)
+* [Timothy Colledge](https://github.com/TimmColl03)
 * Oliver Eielson
-* Kathryn Fernandopulle (https://github.com/kfernandopulle21)
-* Madeleine Fitzgibbon
-* Sebastian Park (https://github.com/Seb-Park)
-* Zachary Rahaman (https://github.com/ramennoodle5)
-* Florance Wu (https://github.com/Florance39)
+* [Kathryn Fernandopulle](https://github.com/kfernandopulle21)
+* [Madeleine Fitzgibbon](https://github.com/madelineclaire)
+* [Sebastian Park](https://github.com/Seb-Park)
+* [Zachary Rahaman](https://github.com/ramennoodle5)
+* [Florance Wu](https://github.com/Florance39)
  
 Features
 --------
